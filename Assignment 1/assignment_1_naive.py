@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""
-Assignment 1: Parallelisation and Improvment of code to determine Pi.
-
-"""
+"""Assignment 1: Parallelisation and Improvement of code to determine Pi."""
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
