@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Assignment 1: Parallelisation and Improvement of code to determine Pi."""
+import time
 from mpi4py import MPI
 from mpmath import quad
+start_time = time.time()
 comm = MPI.COMM_WORLD
 
 nproc = comm.Get_size()
@@ -61,3 +63,6 @@ else:
       # stop the worker
             break
         comm.send(quad(integrand, [i * DELTA, (i+1) * DELTA]), dest=0)
+
+end_time = time.time()
+print("The runtime was", f"{end_time - start_time}","seconds")
