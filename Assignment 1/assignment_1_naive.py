@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Assignment 1: Parallelisation and Improvement of code to determine Pi."""
 from mpi4py import MPI
-
+from mpmath import quad
 comm = MPI.COMM_WORLD
 
 nproc = comm.Get_size()
@@ -9,7 +9,7 @@ nproc = comm.Get_size()
 nworkers = nproc - 1
 
 # samples
-N = 100000
+N = 16
 DELTA = 1.0 / N
 
 # integral
@@ -34,7 +34,7 @@ if comm.Get_rank() == 0:
 
         if j == 0:
       # so do this locally using the leader machine
-            y = integrand(z) * DELTA
+            y = quad(integrand, [i * DELTA, (i+1) * DELTA])
         else:
       # communicate to a worker
             comm.send(z, dest=j)
@@ -60,4 +60,4 @@ else:
         if z < 0.0:
       # stop the worker
             break
-        comm.send(integrand(z) * DELTA, dest=0)
+        comm.send(quad(integrand, [i * DELTA, (i+1) * DELTA]), dest=0)
