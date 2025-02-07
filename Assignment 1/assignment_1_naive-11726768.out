@@ -1,0 +1,34 @@
+===================================================================================
+SLURM Job ID:            11726768
+Submit time:             Fri Feb 07 12:46:27 GMT 2025 (Unix Epoch time: 1738932387)
+Start time:              Fri Feb 07 12:46:38 GMT 2025 (Unix Epoch time: 1738932398)
+No. nodes:               1
+No. tasks:               8
+Job name:                assignment_1_naive
+Account:                 teaching
+QoS:                     teaching
+Partition (queue):       teaching-gpu
+Submit directory:        /users/gpb20141/PH510/Assignment_1
+Script name:             /users/gpb20141/PH510/Assignment_1/assignment_1_slurm.sh
+Master node:             weegpu4
+Nodes used:              weegpu4
+Task distribution:       block:block
+===================================================================================
+
+
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
+Integral % 3.141592653598167
+Integral % 3.141592653598167
+Integral % 3.141592653598167
+Integral % 3.141592653598167
+Integral % 3.141592653598167
+Integral % 3.141592653598167
+Integral % 3.141592653598167
+Integral % 3.141592653598167
+===================================================================================
+SLURM job 11726768 ended:     Fri Feb 07 12:44:53 GMT 2025 (Unix Epoch time: 1738932293)
+This is an estimated end time using the 'date' command from node weegpu4.hpc.strath.ac.uk
+For accurate timings, use 'sacct -j 11726768 -X --format=Submit,Start,End,Elapsed'
+======================================================================================
