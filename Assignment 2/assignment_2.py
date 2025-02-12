@@ -6,14 +6,15 @@ Created on Fri Feb  7 15:49:21 2025.
 """
 import math
 
+#Task 1a
+
 class Vector:
     """
     An object which represents a Vector using coordinates, and can be added,
     subtracted, dot and cross producted, its magnitude determined, and returned
     via print
-    """
-    
-    def __init__(self, x=0, y=0, z=0): #initialises the Vector and its attributes
+    """    
+    def __init__(self, x, y, z): #initialises the Vector and its attributes
         self.x, self.y, self.z = x,y,z
     def __add__(self, other):
         """For addition of two vectors"""
@@ -42,18 +43,22 @@ class Vector:
             return self.x == other.x and self.y == other.y and self.z == other.z
         return NotImplemented
 A = Vector(3,4,5)
+#Task 1b
 print("Vector A =",A)
+#Task 1c
 print("The Magnitude of Vector A is", Vector.norm(A))
 
 B = Vector(4,5,6)
 print("B = ", B)
 
+#Task 1d
 C = A + B
 print("Vector A + Vector B = [", C, "]")
 
 D = A-B
 print("Vector A - Vector B =" , D)
 
+#Task 1e
 E = Vector.dot(A, B)
 print("The Dot Product of A & B is [", E,"]")
 
@@ -70,23 +75,14 @@ class Spherical_Polar(Vector):
         self.x = self.r*math.sin(self.theta)*math.cos(self.phi)
         self.y = self.r*math.sin(self.theta)*math.sin(self.phi)
         self.z = self.r*math.cos(self.theta)
-    def r(self):
-        """Positional Parameter to Spherical Polar Vector"""
-        return self.norm()
-    def theta(self):
-        """Returns the Azimuthal Angle"""
-        return math.atan2(self.y, self.x)
-    def phi(self):
-        """Returns the Polar Angle"""
-        return math.acos(self.z/self.norm())
         # if self.degrees == True:
         #     self.theta = self.theta * 180/math.pi
         #     self.phi = self.phi * 180/math.pi
 
 def Triangle_Area(V1, V2, V3):
-    Side_1 = V1 - V2
-    Side_2 = V3 - V2
-    return 0.5 * Vector.norm(Vector.cross(Side_1, Side_2))
+    Side1 = V1 - V2
+    Side2 = V3 - V2
+    return 0.5 * Vector.norm(Vector.cross(Side1, Side2))
 
 
 #Triangle 1 (Cartesian)
@@ -96,7 +92,11 @@ A2 = Vector(1, 0, 0)
 A3 = Vector(0, 1, 0)
 
 Area_1 = Triangle_Area(A1, A2, A3)
-print("The Cartesian Area of Triangle 1 is", Area_1)
+print("The Cartesian Area of Triangle A is", Area_1)
 
+B1 = Vector(-1, -1, -1)
+B2 = Vector(0, -1, -1)
+B3 = Vector(-1, 0, -1)
 
-
+Area_B = Triangle_Area(B1, B2, B3)
+print("The Cartesian Area of Triangle B is", Area_B)
