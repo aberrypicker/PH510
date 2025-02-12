@@ -66,10 +66,10 @@ class Spherical_Polar(Vector):
     """An Object to Represent a Vector in Spherical Coordinates"""
     def __init__(self, r, theta, phi):
         """New Parameters"""
-        Vector.__init__(self,
-                        r*math.cos(theta)*math.cos(phi),
-                        r*math.cos(theta)*math.sin(phi),
-                        r*math.sin(theta))
+        self.r, self.theta, self.phi = r, theta, phi
+        self.x = self.r*math.sin(self.theta)*math.cos(self.phi)
+        self.y = self.r*math.sin(self.theta)*math.sin(self.phi)
+        self.z = self.r*math.cos(self.theta)
     def r(self):
         """Positional Parameter to Spherical Polar Vector"""
         return self.norm()
@@ -78,9 +78,25 @@ class Spherical_Polar(Vector):
         return math.atan2(self.y, self.x)
     def phi(self):
         """Returns the Polar Angle"""
-        return math.asin(self.z/self.norm())
+        return math.acos(self.z/self.norm())
         # if self.degrees == True:
         #     self.theta = self.theta * 180/math.pi
         #     self.phi = self.phi * 180/math.pi
 
-#def Triangle_1(V1, V2, V3):
+def Triangle_Area(V1, V2, V3):
+    Side_1 = V1 - V2
+    Side_2 = V3 - V2
+    return 0.5 * Vector.norm(Vector.cross(Side_1, Side_2))
+
+
+#Triangle 1 (Cartesian)
+
+A1 = Vector(0, 0, 0)
+A2 = Vector(1, 0, 0)
+A3 = Vector(0, 1, 0)
+
+Area_1 = Triangle_Area(A1, A2, A3)
+print("The Cartesian Area of Triangle 1 is", Area_1)
+
+
+
