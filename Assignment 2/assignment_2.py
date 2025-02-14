@@ -64,15 +64,15 @@ C = A + B
 print("Vector A + Vector B = [", C, "]")
 
 D = A-B
-print("Vector A - Vector B =" , D)
+print("Vector A - Vector B =", D)
 
 # Task 1e
 print()
 print("Task 1e")
 E = Vector.dot(A, B)
-print("The Dot Product of A & B is [", E,"]")
+print("The Dot Product of A & B is [", E, "]")
 
-F = Vector.cross(A,B)
+F = Vector.cross(A, B)
 print("The Cross product of A & B is [", F, "]")
 
 
@@ -82,18 +82,58 @@ class SphericalPolar(Vector):
 
     def __init__(self, r, theta, phi):
         """Define the Spherical Polar parameters."""
+        Vector.__init__(self, (r*math.sin(theta)*math.cos(phi)),
+                        r*math.sin(theta)*math.sin(phi),
+                        r*math.cos(theta))
         self.r, self.theta, self.phi = r, theta, phi
+        self.r = self.norm()
+        self.theta = math.acos(self.z/self.norm())
+        self.phi = math.atan2(self.y, self.x)
         self.x = self.r*math.sin(self.theta)*math.cos(self.phi)
         self.y = self.r*math.sin(self.theta)*math.sin(self.phi)
         self.z = self.r*math.cos(self.theta)
         # if self.degrees == True:
         #     self.theta = self.theta * 180/math.pi
         #     self.phi = self.phi * 180/math.pi
+    def __repr__(self):
+        """
+        Ensures Spherical Polar coordinates are represented when printing 
+        Polar vectors.
+        """
+        return f'Spherical Vector(r={self.r:.2f}, theta={self.theta:.2f}, phi={self.phi:.2f})'
 
-Q = SphericalPolar(1, 45, 30)
+# Task 2a, b: Initialising and Printing Vector in Spherical Polar coords.
+P = SphericalPolar(1, 25 * math.pi/180, 43 * math.pi/180)
+print()
+print("Task 2a + b")
+print("Vector P in Spherical Polar Coordinates is", P)
 
+# Task 2c: Printing Magnitude of Spherical Polar Vector.
+print()
+print("Task 2c")
+print("The Magnitude of Vector P is", Vector.norm(P))
 
+# Task 2d: Addition & Subtraction of Spherical Polar Vectors.
+Q = SphericalPolar(2, 30 * math.pi/180, 90 * math.pi/180)
 
+R = P + Q
+print()
+print("Task 2d")
+print("Spherical Vector P + Spherical Vector Q =", R)
+
+S = P - Q
+print("Spherical Vector P - Spherical Vector Q =", S)
+
+# Task 2e
+
+T = Vector.dot(P, Q)
+print()
+print("Task 2e")
+print("The Dot product between Spherical Polar Vectors P & Q is", T)
+
+U = Vector.cross(P, Q)
+print()
+print("The Cross product between Spherical Polar Vectors P & Q is", U)
 # Task 3a: Triangle Area (Cartesian)
 def triangle_area(vertice_1, vertice_2, vertice_3):
     """
@@ -133,7 +173,7 @@ D2 = Vector(1, -1, 0)
 D3 = Vector(0, 0, 1)
 
 Area_D = triangle_area(D1, D2, D3)
-print("The Cartesian Area of Triangle D is", f"{Area_D:.3f}")
+print("The Cartesian Area of Triangle D is", f"{Area_D:.3}")
 
 # Task 3b
 
@@ -142,27 +182,40 @@ def triangle_angle(vertice_1, vertice_2, vertice_3):
     Function to use the triangle vertices to determine the internal
     angles of the given triangle.
     """
-    side_1 = vertice_1 - vertice_2
-    side_2 = vertice_3 - vertice_2
-    side_3 = vertice_2 + vertice_3 
-    angle_1 = math.acos(Vector.dot(side_1, side_2)/ (Vector.norm(side_1) * Vector.norm(side_2))) * (180/math.pi)
-    angle_2 = math.acos(Vector.dot(side_3, side_2)/
-                        (Vector.norm(side_3) * Vector.norm(side_2))) * (180/math.pi)
-    angle_3 = 180 - angle_1 - angle_2
+    side_12 = vertice_2 - vertice_1
+    side_23 = vertice_3 - vertice_2
+    side_31 = vertice_1 - vertice_3
+    side_21 = vertice_1 - vertice_2
+    side_32 = vertice_2 - vertice_3
+    side_13 = vertice_3 - vertice_1
+    angle_1 = math.acos(Vector.dot(side_12, side_13)/
+                        (Vector.norm(side_12) * Vector.norm(side_13))) * (180/
+                                                                       math.pi)
+    angle_2 = math.acos(Vector.dot(side_21, side_23)/
+                        (Vector.norm(side_21) * Vector.norm(side_23))) * (180/
+                                                                       math.pi)
+    angle_3 = math.acos(Vector.dot(side_32, side_31)/
+                        (Vector.norm(side_32) * Vector.norm(side_31))) * (180/
+                                                                       math.pi)
     return angle_1, angle_2, angle_3
+
 
 Angles_A = triangle_angle(A1, A2, A3)
 print()
 print("Task 3b")
-print("The Internal Angles of Triangle A are", Angles_A)
+print("The Internal Angles of Triangle A are", f"{Angles_A[0]:.1f}",
+      f"{Angles_A[1]:.1f}", f"{Angles_A[2]:.1f}")
 
 Angles_B = triangle_angle(B1, B2, B3)
-print("The Internal Angles of Triangle B are", Angles_B)
+print("The Internal Angles of Triangle B are", f"{Angles_B[0]:.1f}",
+      f"{Angles_B[1]:.1f}", f"{Angles_B[2]:.1f}")
 
 Angles_C = triangle_angle(C1, C2, C3)
-print("The Internal Angles of Triangle C are", Angles_C)
+print("The Internal Angles of Triangle C are", f"{Angles_C[0]:.1f}",
+      f"{Angles_C[1]:.1f}", f"{Angles_C[2]:.1f}")
 
 Angles_D = triangle_angle(D1, D2, D3)
-print("The Internal Angles of Triangle D are", Angles_D)
+print("The Internal Angles of Triangle D are", f"{Angles_D[0]:.1f}",
+      f"{Angles_D[1]:.1f}", f"{Angles_D[2]:.1f}")
 
 # Task 3c
