@@ -42,6 +42,23 @@ class Vector:
         if isinstance(other, Vector):
             return self.x == other.x and self.y == other.y and self.z == other.z
         return NotImplemented
+    def conversion(self):
+
+        """
+        Converting cartesian coordinates to spherical
+        """
+        r = math.sqrt(self.x**2 + self.y**2 + self.z**2)
+
+        if self.x == 0:
+
+            θ = math.pi/2
+
+        else:
+
+            θ = math.acos(self.z/r)
+
+        φ = math.atan(self.y/self.x)
+        return SphericalPolar(r, θ, φ)
 
 
 A = Vector(3, 4, 5)
@@ -80,48 +97,21 @@ print("The Cross product of A & B is [", F, "]")
 class SphericalPolar(Vector):
     """An Object to Represent a Vector in Spherical Coordinates."""
 
-    def __init__(self, r, theta, phi):
+    def __init__(self, r, θ, φ):
         """Define the Spherical Polar parameters."""
-        Vector.__init__(self, (r*math.sin(theta)*math.cos(phi)),
-                        r*math.sin(theta)*math.sin(phi),
-                        r*math.cos(theta))
-        self.r, self.theta, self.phi = r, theta, phi
-        self.r = self.norm()
-        self.theta = math.acos(self.z/self.norm())
-        self.phi = math.atan2(self.y, self.x)
-        self.x = self.r*math.sin(self.theta)*math.cos(self.phi)
-        self.y = self.r*math.sin(self.theta)*math.sin(self.phi)
-        self.z = self.r*math.cos(self.theta)
-        # if self.degrees == True:
-        #     self.theta = self.theta * 180/math.pi
-        #     self.phi = self.phi * 180/math.pi
+        Vector.__init__(self, (r*math.sin(θ)*math.cos(φ)),
+                        r*math.sin(θ)*math.sin(φ),
+                        r*math.cos(θ))
+        self.r, self.θ, self.φ = r, θ, φ
+        self.x = self.r*math.sin(self.θ)*math.cos(self.φ)
+        self.y = self.r*math.sin(self.θ)*math.sin(self.φ)
+        self.z = self.r*math.cos(self.θ)
     def __repr__(self):
         """
         Ensures Spherical Polar coordinates are represented when printing 
         Polar vectors.
         """
-        return f'Spherical Vector(r={self.r:.2f}, theta={self.theta:.2f}, phi={self.phi:.2f})'
-    def conversion(self):
-
-        """
-
-        Converting cartesian coordinates to spherical
-
-        """
-
-        r = math.sqrt(self.x**2 + self.y**2 + self.z**2)
-
-        if self.x == 0:
-
-            theta = math.pi/2
-
-        else:
-
-            theta = math.acos(self.z/r)
-
-        phi = math.atan(self.y/self.x)
-
-        return SphericalPolar(r, theta, phi)
+        return f'Spherical Vector(r={self.r:.2f}, θ={self.θ:.2f}, φ={self.φ:.2f})'
 
 
 # Task 2a, b: Initialising and Printing Vector in Spherical Polar coords.
@@ -246,8 +236,43 @@ P1 = SphericalPolar(0, 0, 0)
 P2 = SphericalPolar(1, 0, 0)
 P3 = SphericalPolar(1, 90 * math.pi/180, 0)
 
-Area_P = triangle_area(A1, A2, A3)
+Area_P = triangle_area(P1, P2, P3)
 print()
 print("Task 3c")
 print("The Spherical Polar Area of Triangle P is", Area_P)
+Angles_P = triangle_angle(P1, P2, P3)
+print("The Internal Angles of Triangle P are", f"{Angles_P[0]:.1f}",
+      f"{Angles_P[1]:.1f}", f"{Angles_P[2]:.1f}")
 
+Q1 = SphericalPolar(1, 0, 0)
+Q2 = SphericalPolar(1, 90 * math.pi/180, 0)
+Q3 = SphericalPolar(1, 90 * math.pi/180, 180 * math.pi/180)
+
+Area_Q = triangle_area(Q1, Q2, Q3)
+print()
+print("The Spherical Polar Area of Triangle Q is", f"{Area_Q:.3}")
+Angles_Q = triangle_angle(Q1, Q2, Q3)
+print("The Internal Angles of Triangle Q are", f"{Angles_Q[0]:.1f}",
+      f"{Angles_Q[1]:.1f}", f"{Angles_Q[2]:.1f}")
+
+R1 = SphericalPolar(0, 0, 0)
+R2 = SphericalPolar(2, 0, 0)
+R3 = SphericalPolar(2, 90 * math.pi/180, 0)
+
+Area_R = triangle_area(R1, R2, R3)
+print()
+print("The Spherical Polar Area of Triangle R is", f"{Area_R:.3}")
+Angles_R = triangle_angle(R1, R2, R3)
+print("The Internal Angles of Triangle R are", f"{Angles_R[0]:.1f}",
+      f"{Angles_R[1]:.1f}", f"{Angles_R[2]:.1f}")
+
+S1 = SphericalPolar(1, 90 * math.pi/180, 0)
+S2 = SphericalPolar(1, 90 * math.pi/180, 180 * math.pi/180)
+S3 = SphericalPolar(1, 90 * math.pi/180, 270 * math.pi/180)
+
+Area_S = triangle_area(S1, S2, S3)
+print()
+print("The Spherical Polar Area of Triangle S is", f"{Area_S:.3}")
+Angles_S = triangle_angle(S1, S2, S3)
+print("The Internal Angles of Triangle S are", f"{Angles_S[0]:.1f}",
+      f"{Angles_S[1]:.1f}", f"{Angles_S[2]:.1f}")
