@@ -12,7 +12,7 @@ class Vector:
     """
     An object which represents a Vector using coordinates, and can be added,
     subtracted, dot and cross producted, its magnitude determined, and returned
-    via print
+    via print command.
     """
     def __init__(self, x, y, z): #initialises the Vector and its attributes
         self.x, self.y, self.z = x,y,z
@@ -101,6 +101,28 @@ class SphericalPolar(Vector):
         Polar vectors.
         """
         return f'Spherical Vector(r={self.r:.2f}, theta={self.theta:.2f}, phi={self.phi:.2f})'
+    def conversion(self):
+
+        """
+
+        Converting cartesian coordinates to spherical
+
+        """
+
+        r = math.sqrt(self.x**2 + self.y**2 + self.z**2)
+
+        if self.x == 0:
+
+            theta = math.pi/2
+
+        else:
+
+            theta = math.acos(self.z/r)
+
+        phi = math.atan(self.y/self.x)
+
+        return SphericalPolar(r, theta, phi)
+
 
 # Task 2a, b: Initialising and Printing Vector in Spherical Polar coords.
 P = SphericalPolar(1, 25 * math.pi/180, 43 * math.pi/180)
@@ -119,10 +141,10 @@ Q = SphericalPolar(2, 30 * math.pi/180, 90 * math.pi/180)
 R = P + Q
 print()
 print("Task 2d")
-print("Spherical Vector P + Spherical Vector Q =", R)
+print("Spherical Vector P + Spherical Vector Q =", SphericalPolar.conversion(R))
 
 S = P - Q
-print("Spherical Vector P - Spherical Vector Q =", S)
+print("Spherical Vector P - Spherical Vector Q =", SphericalPolar.conversion(S))
 
 # Task 2e
 
@@ -133,7 +155,7 @@ print("The Dot product between Spherical Polar Vectors P & Q is", T)
 
 U = Vector.cross(P, Q)
 print()
-print("The Cross product between Spherical Polar Vectors P & Q is", U)
+print("The Cross product between Spherical Polar Vectors P & Q is", SphericalPolar.conversion(U))
 # Task 3a: Triangle Area (Cartesian)
 def triangle_area(vertice_1, vertice_2, vertice_3):
     """
@@ -149,10 +171,10 @@ A1 = Vector(0, 0, 0)
 A2 = Vector(1, 0, 0)
 A3 = Vector(0, 1, 0)
 
-Area_1 = triangle_area(A1, A2, A3)
+Area_A = triangle_area(A1, A2, A3)
 print()
 print("Task 3a")
-print("The Cartesian Area of Triangle A is", Area_1)
+print("The Cartesian Area of Triangle A is", Area_A)
 
 B1 = Vector(-1, -1, -1)
 B2 = Vector(0, -1, -1)
@@ -219,3 +241,13 @@ print("The Internal Angles of Triangle D are", f"{Angles_D[0]:.1f}",
       f"{Angles_D[1]:.1f}", f"{Angles_D[2]:.1f}")
 
 # Task 3c
+
+P1 = SphericalPolar(0, 0, 0)
+P2 = SphericalPolar(1, 0, 0)
+P3 = SphericalPolar(1, 90 * math.pi/180, 0)
+
+Area_P = triangle_area(A1, A2, A3)
+print()
+print("Task 3c")
+print("The Spherical Polar Area of Triangle P is", Area_P)
+
