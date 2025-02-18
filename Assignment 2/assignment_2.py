@@ -12,40 +12,57 @@ class Vector:
     """
     An object which represents a Vector using coordinates, and can be added,
     subtracted, dot and cross producted, its magnitude determined, and returned
-    via print command.
+    via print command. Also a conversion scheme for switchign between 
+    cartesian and spherical polar coordinates.
     """
-    def __init__(self, x, y, z): #initialises the Vector and its attributes
+    def __init__(self, x, y, z):
+        """
+        Define the vector by its cartesian coordinates in the x, y,
+        and z directions.
+        """
         self.x, self.y, self.z = x,y,z
     def __add__(self, other):
-        """For addition of two vectors"""
+        """
+        Define the addition of two vectors by adding each component part.
+        """
         return Vector(self.x + other.x, self.y + other.y, self.z + other.z)
     def __sub__(self, other):
-        """ For subtraction of two vectors"""
+        """
+        Define the subtraction of two vectors by subtracting their
+        component parts.
+        """
         return Vector(self.x - other.x, self.y - other.y, self.z - other.z)
     def dot(self, other):
-        """To calculate the dot product between two vectors"""
+        """
+        Define the calculation of the dot product between two vectors using
+        the dot product formula.
+        """
         return self.x * other.x + self.y * other.y + self.z * other.z
     def cross(self, other):
-        """To determine the cross product between two vectors"""
+        """
+        Define and return the cross product between two vectors.
+        """
         return Vector((self.y * other.z - self.z * other.y),
                 (self.z * other.x - self.x * other.z),
                 (self.x * other.y - self.y *other.x))
     def norm(self):
-        """Determining and returning the magnitude of the vector"""
+        """
+        Define and return the magnitude of the vector.
+        """
         return math.sqrt(self.x**2 + self.y**2 + self.z**2)
     def __repr__(self):
         return f'Vector[x={self.x}, y={self.y}, z={self.z}]'
-    def __eq__(self, other):
-        print("__eq__ called")
-        if isinstance(other, tuple):
-            other = Vector(*other)
-        if isinstance(other, Vector):
-            return self.x == other.x and self.y == other.y and self.z == other.z
-        return NotImplemented
+    # def __eq__(self, other):
+    #     print("__eq__ called")
+    #     if isinstance(other, tuple):
+    #         other = Vector(*other)
+    #     if isinstance(other, Vector):
+    #         return self.x == other.x and self.y == other.y and self.z == other.z
+    #     return NotImplemented
     def conversion(self):
-
         """
-        Converting cartesian coordinates to spherical
+        Converting cartesian coordinates to spherical using the conversion
+        equations, plus failsafe for x coord of 0.
         """
         r = math.sqrt(self.x**2 + self.y**2 + self.z**2)
 
@@ -94,10 +111,15 @@ print("The Cross product of A & B is [", F, "]")
 
 # Task 2
 class SphericalPolar(Vector):
-    """An Object to Represent a Vector in Spherical Coordinates."""
+    """
+    An Object to Represent a Vector in Spherical Coordinates.
+    """
 
     def __init__(self, r, theta, phi):
-        """Define the Spherical Polar parameters."""
+        """
+        Define the Spherical Polar parameters of position, polar angle,
+        and azimuthal angle.
+        """
         Vector.__init__(self, (r*math.sin(theta)*math.cos(phi)),
                         r*math.sin(theta)*math.sin(phi),
                         r*math.cos(theta))
@@ -107,10 +129,10 @@ class SphericalPolar(Vector):
         self.z = self.r*math.cos(self.theta)
     def __repr__(self):
         """
-        Ensures Spherical Polar coordinates are represented when printing 
-        Polar vectors.
+        Ensures Spherical Polar coordinate variables are represented when
+        printing Polar vectors.
         """
-        return f'Spherical Vector(r={self.r:.2f}, theta={self.theta:.2f}, phi={self.phi:.2f})'
+        return f'Spherical Vector[r={self.r:.2f}, theta={self.theta:.2f}, phi={self.phi:.2f}]'
 
 
 # Task 2a, b: Initialising and Printing Vector in Spherical Polar coords.
@@ -148,8 +170,9 @@ print("The Cross product between Spherical Polar Vectors P & Q is", SphericalPol
 # Task 3a: Triangle Area (Cartesian)
 def triangle_area(vertice_1, vertice_2, vertice_3):
     """
-    Function for determining area of a Triangle
-    using paralellogram cross product
+    Define a function for returning the area of a Triangle, utilising the cross
+    product between two vectors which form joining vertices of the triangle, to
+    calculate the area.
     """
     side_1 = vertice_1 - vertice_2
     side_2 = vertice_3 - vertice_2
@@ -190,8 +213,12 @@ print("The Area of Cartesian Triangle D is", f"{Area_D:.3}")
 
 def triangle_angle(vertice_1, vertice_2, vertice_3):
     """
-    Function to use the triangle vertices to determine the internal
-    angles of the given triangle.
+    Define a function to use the triangle vertices to return the internal
+    angles of the given triangle. The forward and backwards vectors for all
+    sides of the triangle are calculated, and then used with dot product
+    and magnitude to determine each angle between vectors. The angles, which
+    python calculates in radians, are then converted into degrees for 
+    ease of visibility.
     """
     side_12 = vertice_2 - vertice_1
     side_23 = vertice_3 - vertice_2
