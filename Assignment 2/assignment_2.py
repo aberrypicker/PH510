@@ -85,7 +85,7 @@ print("Vector A =", A)
 # Task 1c
 print()
 print("Task 1c")
-print("The Magnitude of Vector A is", Vector.norm(A))
+print(f"The Magnitude of Vector A is {Vector.norm(A) :.3}")
 
 B = Vector(4, 5, 6)
 print("B = ", B)
@@ -162,7 +162,7 @@ print("Spherical Vector P - Spherical Vector Q =", SphericalPolar.conversion(S))
 T = Vector.dot(P, Q)
 print()
 print("Task 2e")
-print("The Dot product between Spherical Polar Vectors P & Q is", T)
+print(f"The Dot product between Spherical Polar Vectors P & Q is {T:.3}")
 
 U = Vector.cross(P, Q)
 print()
