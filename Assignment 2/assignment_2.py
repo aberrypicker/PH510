@@ -52,13 +52,6 @@ class Vector:
         return math.sqrt(self.x**2 + self.y**2 + self.z**2)
     def __repr__(self):
         return f'Vector[x={self.x}, y={self.y}, z={self.z}]'
-    # def __eq__(self, other):
-    #     print("__eq__ called")
-    #     if isinstance(other, tuple):
-    #         other = Vector(*other)
-    #     if isinstance(other, Vector):
-    #         return self.x == other.x and self.y == other.y and self.z == other.z
-    #     return NotImplemented
     def conversion(self):
         """
         Converting cartesian coordinates to spherical using the conversion
