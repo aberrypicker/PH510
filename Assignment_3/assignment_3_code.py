@@ -15,22 +15,31 @@ class Position:
 	A class which uses the dimensions and number of points to determine where the point lies 
 	and relate this to the position of a unit circle inside a square, and so forth.
 	"""
-	def __init__(self, n, d, x, y, z, a, b):
+	def __init__(self, n, d):
 		"""
 		Initialise the position using the number of samples and number of dimensions.
 		"""
 		self.n = n
 		self.d = d
-		self.x, self.y, self.z, self.a, self.b = np.random.uniform(-1,1,5)
-		if d == 1: r = x
-		if d == 2: r = math.sqrt(x**2 + y**2)
-		if d == 3: r = math.sqrt(x**2 + y**2 + z**2)
-		if d == 4: r = math.sqrt(x**2 + y**2 + z**2 + a**2)
-		if d == 5: r = math.sqrt(x**2 + y**2 + z**2 + a**2 + b**2)
+		j = 0 # dimension loop iterator
+		samples = np.zeros((self.n, self.d))
+		while j < self.n:
+			i = 0 # sample loop iterator
+			samples_randomisation = np.random.uniform(-1,1,self.d)
+			samples_randomisation = samples_randomisation.reshape((1, self.d))
+			while i < self.d:
+				samples[j][i] = samples_randomisation[0][i]
+				i = i + 1
+			j = j + 1
+		self.samples = samples
 
-Pos_1 = Position(2, 2, 0, 0, 0, 0, 0) 
-print(Pos_1)
-
+	def r(self):
+		"""
+		Perform the necessary calculations to determine the vector position depending on dimensionality
+		"""
+		
+sample_1 = Position(20, 2)
+print(sample_1.samples)
 
 class MonteCarlo:
 	def __init__(self, nd, ns):
@@ -48,8 +57,8 @@ class MonteCarlo:
 				j+=1
 			i += 1
 
-a =  MonteCarlo(2,10)
-print(a.data_array)
+#a =  MonteCarlo(2,20)
+#print(a.data_array)
 
 
 
