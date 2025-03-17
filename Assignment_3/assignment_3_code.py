@@ -20,17 +20,7 @@ class Position:
         """
         self.n = n
         self.d = d
-        w = 0 # dimension loop iterator
-        samples = np.zeros((self.n, self.d))
-        while w < self.n:
-            v = 0 # sample loop iterator
-            samples_randomisation = np.random.uniform(-1,1,self.d)
-            samples_randomisation = samples_randomisation.reshape((1, self.d))
-            while v < self.d:
-                samples[w][v] = samples_randomisation[0][v]
-                v = v + 1
-            w = w + 1
-        self.samples = samples
+        self.samples = np.random.uniform(-1, 1, (self.n, self.d))
 
     #def r(self):
         """
@@ -41,7 +31,7 @@ class Position:
         #while w < self.n:
 
 
-sample_1 = Position(20, 3)
+sample_1 = Position(20, 5)
 print(sample_1.samples)
 
 class MonteCarlo:
@@ -97,4 +87,4 @@ class MonteCarlo:
         """
         return self.average()[0], self.integral(), self.variance()
 
-print(sample_1.calculations)
+
