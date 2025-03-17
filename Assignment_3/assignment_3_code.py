@@ -21,18 +21,18 @@ class Position:
         self.n = n
         self.d = d
         self.samples = np.random.uniform(-1, 1, (self.n, self.d))
-
-    #def r(self):
+    def r(self):
         """
-        Perform the necessary loop calculations to determine the vector position
-        of each sample row depending on dimensionality.
+        Depending on the number of dimensions, turns the samples into vector positions
+        in the form of r, for use in determining if inside or outside of unit shape.
         """
-        #w = 0 
-        #while w < self.n:
+        r = np.linalg.norm(self.samples, axis=1)
+        return r.reshape(-1,1)
 
-
-sample_1 = Position(20, 5)
+sample_1 = Position(20, 3)
 print(sample_1.samples)
+print()
+print(Position.r(sample_1))
 
 class MonteCarlo:
     """
@@ -87,4 +87,11 @@ class MonteCarlo:
         """
         return self.average()[0], self.integral(), self.variance()
 
+def Gaussian(x, a, b, c, d):
+    """
+    Functions the gaussian distribution for something with infinite integrals.
+    """
+    x = samples
+    y = d + a*np.exp((-1*(x-b)**2)/(2*c**2))
+    return y
 
