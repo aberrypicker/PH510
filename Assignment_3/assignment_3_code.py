@@ -21,6 +21,7 @@ class Position:
         self.n = n
         self.d = d
         self.samples = np.random.uniform(-1, 1, (self.n, self.d))
+
     def r(self):
         """
         Depending on the number of dimensions, turns the samples into vector positions
@@ -38,15 +39,14 @@ class MonteCarlo:
     average across the limits of the function 'a' and 'b'. Finally, the function's variance (error)
     is found.
     """
-    def __init__(self, function, a, b, d, n):
+    def __init__(self, function, classification, a, b):
         self.a = a
         self.b = b
-        self.n = n
-        self.d = d
+        self.classification = classification
         self.function = function
         self.value = function()
 
- 
+
     def __str__(self):
         """
         Confirms which function the Monte Carlo simulation is approximating
@@ -59,8 +59,8 @@ class MonteCarlo:
         Calculates the average value of a given function.
         """
         value_2 = self.value**2
-        average = 1/self.n * np.sum(self.value)
-        average_2 = 1/self.n * np.sum(value_2)
+        average = 1/self.classification.n * np.sum(self.value)
+        average_2 = 1/self.classification.n * np.sum(value_2)
         return average, average_2
 
 
@@ -68,7 +68,7 @@ class MonteCarlo:
         """
         Calculates the integral of a given function  between limits 'a' and 'b'.  
         """
-        integral = (self.b - self.a)**self.d * self.average()[0]
+        integral = (self.b - self.a)**self.classification.d * self.average()[0]
         return integral
 
 
@@ -76,7 +76,7 @@ class MonteCarlo:
         """
         Calculates the variance (error) of a given function.
         """
-        variance = 1/self.n * (self.average()[1] - self.average()[0]**2)
+        variance = 1/self.classification.n * (self.average()[1] - self.average()[0]**2)
         return variance
 
 
@@ -86,19 +86,23 @@ class MonteCarlo:
         """
         return self.average()[0], self.integral(), self.variance()
 
-def Gaussian(x, a, b, c, d):
+class Gaussian:
     """
-    Functions the gaussian distribution for something with infinite integrals.
+    Classifies the Gaussian distribution function to interpret infitinte integral stuff.
     """
-    x = samples
-    y = d + a*np.exp((-1*(x-b)**2)/(2*c**2))
-    return y
+    def __init__(self, x0, sigma, n):
+        """
+        Create conditions for distribution.
+        """
+        self.x0 = x0
+        self.sigma = sigma
+        self.n = n
 
-sample_1 = Position(1000, 3)
+sample_3D = Position(100000000, 3)
 #print(sample_1.samples)
 #print()
 #print(Position.r(sample_1))
 
-Monte_1 = MonteCarlo(sample_1.r, -1, 1, 3, 1000)
-print(f"{Monte_1.calculations()[0]:.4f}", f"{Monte_1.calculations()[1]:.4f}", f"{Monte_1.calculations()[2]:.4f}")
-
+Monte_3D = MonteCarlo(sample_3D.r, sample_3D, -1, 1)
+print("For a 3D Monte Carlo, the respective average, integral, and variance are:"f"{Monte_3D.calculations()[0]:.4f},",
+      f"{Monte_3D.calculations()[1]:.4f},", f"& {Monte_3D.calculations()[2]:.4f}")
