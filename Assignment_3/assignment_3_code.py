@@ -26,13 +26,11 @@ class Position:
         Depending on the number of dimensions, turns the samples into vector positions
         in the form of r, for use in determining if inside or outside of unit shape.
         """
-        r = np.linalg.norm(self.samples, axis=1)
-        return r.reshape(-1,1)
+        r = (np.linalg.norm(self.samples, axis=1)).reshape(-1,1)
+        check = (r <=  1).astype(int)
+        return check
 
-sample_1 = Position(20, 3)
-print(sample_1.samples)
-print()
-print(Position.r(sample_1))
+
 
 class MonteCarlo:
     """
@@ -40,10 +38,11 @@ class MonteCarlo:
     average across the limits of the function 'a' and 'b'. Finally, the function's variance (error)
     is found.
     """
-    def __init__(self, function, a, b, n):
+    def __init__(self, function, a, b, d, n):
         self.a = a
         self.b = b
         self.n = n
+        self.d = d
         self.function = function
         self.value = function()
 
@@ -69,7 +68,7 @@ class MonteCarlo:
         """
         Calculates the integral of a given function  between limits 'a' and 'b'.  
         """
-        integral = (self.b - self.a) * self.average()[0]
+        integral = (self.b - self.a)**self.d * self.average()[0]
         return integral
 
 
@@ -94,4 +93,12 @@ def Gaussian(x, a, b, c, d):
     x = samples
     y = d + a*np.exp((-1*(x-b)**2)/(2*c**2))
     return y
+
+sample_1 = Position(1000, 3)
+#print(sample_1.samples)
+#print()
+#print(Position.r(sample_1))
+
+Monte_1 = MonteCarlo(sample_1.r, -1, 1, 3, 1000)
+print(f"{Monte_1.calculations()[0]:.4f}", f"{Monte_1.calculations()[1]:.4f}", f"{Monte_1.calculations()[2]:.4f}")
 
