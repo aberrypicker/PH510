@@ -22,6 +22,12 @@ class Position:
         self.d = d
         self.samples = np.random.uniform(-1, 1, (self.n, self.d))
 
+    def __str__(self):
+        """
+        Gives the printed information for the samples.
+        """
+        return f"Position:({self.samples})"
+
     def r(self):
         """
         Depending on the number of dimensions, turns the samples into vector positions
@@ -90,19 +96,77 @@ class Gaussian:
     """
     Classifies the Gaussian distribution function to interpret infitinte integral stuff.
     """
-    def __init__(self, x0, sigma, n):
+    def __init__(self, x0, sigma, n, d):
         """
-        Create conditions for distribution.
+        Create conditions for the Gaussian distribution.
         """
         self.x0 = x0
         self.sigma = sigma
         self.n = n
+        self.d = d
+        self.t = np.random.uniform(-1, 1, (self.n, self.d))
+        self.x = self.t/(1 - self.t**2)
 
-sample_3D = Position(100000000, 3)
-#print(sample_1.samples)
-#print()
-#print(Position.r(sample_1))
+
+    def __str__(self):
+        """
+        Gives the printed information for the Distribution.
+        """
+        return f"Gaussian:({self.x0}, {self.sigma})" #placeholder
+
+    def transformation(self, t):
+        """
+        Integration by Substition multiplication term.
+        """
+        return (1 + t**2)/((1 - t**2)**2)
+
+    def integral(self):
+        """
+        Performs integration by substitution on Gaussian Function.
+        """
+        term_1 = (1/(self.sigma * np.sqrt(2*np.pi)))
+        term_2 = np.exp(np.sum(-(abs(self.x - self.x0))**2, axis = 1)/(2 * self.sigma**2))
+        return term_1 * term_2 * np.prod(self.transformation(self.t), axis = 1)
+        
+
+dist_1 = Gaussian(0, 1, 100000000, 1)
+
+MonteGaus_1 = MonteCarlo(dist_1.integral, dist_1, -1, 1)
+print()
+print(MonteGaus_1.calculations())
+print()
+
+dist_6 = Gaussian(0, 1, 100000000, 6)
+
+MonteGaus_6 = MonteCarlo(dist_6.integral, dist_6, -1, 1)
+print()
+print(MonteGaus_6.calculations())
+print()
+
+sample_2D = Position(1000, 2)
+sample_3D = Position(1000, 3)
+sample_4D = Position(1000, 4)
+sample_5D = Position(1000, 5)
+
+Monte_2D = MonteCarlo(sample_2D.r, sample_2D, -1, 1)
+print("For a 2D Monte Carlo, the respective average, integral, and variance are: ",
+      f"{Monte_2D.calculations()[0]:.4f},", f"{Monte_2D.calculations()[1]:.4f},",
+      f"& {Monte_2D.calculations()[2]:.4f}")
 
 Monte_3D = MonteCarlo(sample_3D.r, sample_3D, -1, 1)
-print("For a 3D Monte Carlo, the respective average, integral, and variance are:"f"{Monte_3D.calculations()[0]:.4f},",
-      f"{Monte_3D.calculations()[1]:.4f},", f"& {Monte_3D.calculations()[2]:.4f}")
+print("For a 3D Monte Carlo, the respective average, integral, and variance are: ",
+      f"{Monte_3D.calculations()[0]:.4f},", f"{Monte_3D.calculations()[1]:.4f},",
+      f"& {Monte_3D.calculations()[2]:.4f}")
+
+Monte_4D = MonteCarlo(sample_4D.r, sample_4D, -1, 1)
+print("For a 4D Monte Carlo, the respective average, integral, and variance are: ",
+      f"{Monte_4D.calculations()[0]:.4f},", f"{Monte_4D.calculations()[1]:.4f},",
+      f"& {Monte_4D.calculations()[2]:.4f}")
+
+Monte_5D = MonteCarlo(sample_5D.r, sample_5D, -1, 1)
+print("For a 5D Monte Carlo, the respective average, integral, and variance are: ",
+      f"{Monte_5D.calculations()[0]:.4f},", f"{Monte_5D.calculations()[1]:.4f},",
+      f"& {Monte_5D.calculations()[2]:.4f}")
+
+
+
