@@ -2,7 +2,12 @@
 """
 Version: Python 3.12.8
 
-Assignment 3: Monte Carlo system creation.
+Licensed and Copyrghted 2025.
+
+This file contains classes which allow Monte Carlo simulations to be ran using random
+number sampling, and further classes for specific processes relating to assignment 3:
+The Position class and the Gaussian class. Each class has documentation explaining
+its' subclasses and processes.
 
 """
 from mpi4py import MPI
