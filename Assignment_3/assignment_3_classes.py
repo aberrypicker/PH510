@@ -96,33 +96,11 @@ class MonteCarlo:
 
             print(f"Average = {mean * delta}, Integral = {integral},",
             f"Variance = {variance}")
-            print(f"The Integral is {integral:.4f} ± {uncertainty:.4f}",
+            print(f"The {self.classification.d}D Integral is {integral:.4f} ± {uncertainty:.4f}",
             f"units**{self.classification.d}")
             print()
             return integral
         return None
-
-    #def integral(self):
-        #"""
-        #Calculates the integral of a given function  between limits 'a' and 'b'.  
-        #"""
-      #  integral =
-     #   return integral
-
-
-    #def variance(self):
-        #"""
-        #Calculates the variance (error) of a given function.
-        #"""
-      #  variance = 1/self.classification.n * (self.average()[1] - self.average()[0]**2)
-     #   return variance
-
-
-    #def calculations(self):
-        #"""
-        #Returns all four desired values at once.
-        #"""
-        #return self.average()[0], self.integral(), self.variance(), np.sqrt(self.variance())
 
 class Gaussian:
     """
