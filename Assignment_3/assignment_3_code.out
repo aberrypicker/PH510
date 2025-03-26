@@ -1,0 +1,44 @@
+===================================================================================
+SLURM Job ID:            11935317
+Submit time:             Wed Mar 26 13:31:56 GMT 2025 (Unix Epoch time: 1742995916)
+Start time:              Wed Mar 26 13:31:57 GMT 2025 (Unix Epoch time: 1742995917)
+No. nodes:               1
+No. tasks:               16
+Job name:                assignment_3_code.py
+Account:                 teaching
+QoS:                     teaching
+Partition (queue):       teaching
+Submit directory:        /users/gpb20141/PH510/Assignment_3
+Script name:             /users/gpb20141/PH510/Assignment_3/assignment_3_slurm.sh
+Master node:             wee09
+Nodes used:              wee09
+Task distribution:       block:block
+===================================================================================
+
+
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
+Average = 0.7855448125, Integral = 3.14217925, Variance = 1.6846416005433983e-07
+The 2D Integral is 3.1422 ± 0.0016 units**2
+
+Average = 0.5234431875, Integral = 4.1875455, Variance = 2.494504169598398e-07
+The 3D Integral is 4.1875 ± 0.0040 units**3
+
+Average = 0.30844, Integral = 4.93504, Variance = 2.133047664e-07
+The 4D Integral is 4.9350 ± 0.0074 units**4
+
+Average = 0.164379375, Integral = 5.26014, Variance = 1.3735879607460937e-07
+The 5D Integral is 5.2601 ± 0.0119 units**5
+
+Average = 0.4999857451415184, Integral = 0.9999714902830368, Variance = 7.473433784447673e-08
+The 1D Integral is 1.0000 ± 0.0005 units**1
+
+Average = 1.5460298459322004, Integral = 98.94591013966082, Variance = 9.08778939787566e-06
+The 6D Integral is 98.9459 ± 0.1929 units**6
+
+===================================================================================
+SLURM job 11935317 ended:     Wed Mar 26 13:32:27 GMT 2025 (Unix Epoch time: 1742995947)
+This is an estimated end time using the 'date' command from node wee09.hpc.strath.ac.uk
+For accurate timings, use 'sacct -j 11935317 -X --format=Submit,Start,End,Elapsed'
+======================================================================================
