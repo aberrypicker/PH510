@@ -47,6 +47,7 @@ Monte_2D = mc.MonteCarlo(sample_2D.r, sample_2D, -1, 1)
 if rank==0:
     print("Test Case 1")
     print()
+    print()
     print("2D Circle inside Square")
 Monte_2D = Monte_2D.parallel_version()
 
@@ -81,6 +82,7 @@ Monte_1D0 = mc.MonteCarlo(dist_10.integral, dist_10, -1, 1)
 if rank==0:
     print()
     print("Test Case 2")
+    print()
     print()
     print(f"1D Normal Distribution, [sigma = {dist_10.sigma}], [x0 = {dist_10.x0}]")
 Monte_1D0 = Monte_1D0.parallel_version()

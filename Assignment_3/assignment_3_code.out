@@ -1,7 +1,7 @@
 ===================================================================================
-SLURM Job ID:            11956931
-Submit time:             Thu Mar 27 12:45:07 GMT 2025 (Unix Epoch time: 1743079507)
-Start time:              Thu Mar 27 12:45:07 GMT 2025 (Unix Epoch time: 1743079507)
+SLURM Job ID:            11956936
+Submit time:             Thu Mar 27 13:17:30 GMT 2025 (Unix Epoch time: 1743081450)
+Start time:              Thu Mar 27 13:17:30 GMT 2025 (Unix Epoch time: 1743081450)
 No. nodes:               1
 No. tasks:               16
 Job name:                assignment_3_code.py
@@ -10,8 +10,8 @@ QoS:                     teaching
 Partition (queue):       teaching
 Submit directory:        /users/gpb20141/PH510/Assignment_3
 Script name:             /users/gpb20141/PH510/Assignment_3/assignment_3_slurm.sh
-Master node:             wee14
-Nodes used:              wee14
+Master node:             wee15
+Nodes used:              wee15
 Task distribution:       block:block
 ===================================================================================
 
@@ -23,254 +23,264 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
 Test Case 1
 
+
 2D Circle inside Square
-Average = 0.7854164100000001, Integral = 3.1416656400000003, Variance = 1.6853747290271183e-09
-The 2D Integral is 3.1417 ± 0.0002 units**2
+Average = 0.78540698, Integral = 3.14162792, Variance = 1.6854285576727956e-09
+The 2D Integral is 3.1416 ± 0.0002 units**2
 
 3D Sphere inside Cube
-Average = 0.52359728, Integral = 4.18877824, Variance = 2.4944316837660157e-09
-The 3D Integral is 4.1888 ± 0.0004 units**3
+Average = 0.52362909, Integral = 4.18903272, Variance = 2.494416661057719e-09
+The 3D Integral is 4.1890 ± 0.0004 units**3
 
 4D Shape inside Tesseract
-Average = 0.30842062000000003, Integral = 4.9347299200000005, Variance = 2.132973411588156e-09
-The 4D Integral is 4.9347 ± 0.0007 units**4
+Average = 0.30846966, Integral = 4.93551456, Variance = 2.133161288594844e-09
+The 4D Integral is 4.9355 ± 0.0007 units**4
 
 5D Shape inside Hypersquare
-Average = 0.16448092, Integral = 5.26338944, Variance = 1.374269469559536e-09
-The 5D Integral is 5.2634 ± 0.0012 units**5
+Average = 0.16446845000000002, Integral = 5.2629904000000005, Variance = 1.3741857895459753e-09
+The 5D Integral is 5.2630 ± 0.0012 units**5
 
 
 Test Case 2
 
+
 1D Normal Distribution, [sigma = 1], [x0 = 0]
-Average = 0.49996996832048973, Integral = 0.9999399366409795, Variance = 7.472617066525167e-10
-The 1D Integral is 0.9999 ± 0.0001 units**1
+Average = 0.4999779860216643, Integral = 0.9999559720433286, Variance = 7.473933335719518e-10
+The 1D Integral is 1.0000 ± 0.0001 units**1
 
 1D Normal Distribution, [sigma = 3], [x0 = 1]
-Average = 0.4999547066218923, Integral = 0.9999094132437846, Variance = 3.844616676971266e-09
+Average = 0.4999607650751649, Integral = 0.9999215301503298, Variance = 3.845026066585855e-09
 The 1D Integral is 0.9999 ± 0.0001 units**1
 
 1D Normal Distribution, [sigma = 5], [x0 = -1]
-Average = 0.500045695377138, Integral = 1.000091390754276, Variance = 6.111241910550631e-09
-The 1D Integral is 1.0001 ± 0.0002 units**1
+Average = 0.5000944470206083, Integral = 1.0001888940412167, Variance = 6.112551736792897e-09
+The 1D Integral is 1.0002 ± 0.0002 units**1
 
 6D Normal Distribution, [sigma = 1], [x0 = 0]
-Average = 1.5464032697944523, Integral = 98.96980926684495, Variance = 9.095150015032877e-08
-The 6D Integral is 98.9698 ± 0.0193 units**6
+Average = 1.5462787443631874, Integral = 98.96183963924399, Variance = 9.093276255484771e-08
+The 6D Integral is 98.9618 ± 0.0193 units**6
 
 6D Normal Distribution, [sigma = 3], [x0 = 1]
-Average = 374.544197268158, Integral = 23970.82862516211, Variance = 0.3471308571404
-The 6D Integral is 23970.8286 ± 37.7074 units**6
+Average = 375.54498848791894, Integral = 24034.879263226812, Variance = 0.3662042452285795
+The 6D Integral is 24034.8793 ± 38.7295 units**6
 
 6D Normal Distribution, [sigma = 5], [x0 = -1]
-Average = 4849.759429823734, Integral = 310384.60350871895, Variance = 409.30797139232567
-The 6D Integral is 310384.6035 ± 1294.8071 units**6
+Average = 4855.6024206774655, Integral = 310758.5549233578, Variance = 475.052980727949
+The 6D Integral is 310758.5549 ± 1394.9254 units**6
 
-The runtime was 220.8554 seconds for 1 processors
+The runtime was 317.8079 seconds for 1 processors
 
 
 2 Processor(s)
 
 Test Case 1
 
+
 2D Circle inside Square
-Average = 0.7853699700000001, Integral = 3.1414798800000003, Variance = 3.3712796044439818e-09
+Average = 0.78538244, Integral = 3.14152976, Variance = 3.371137258792929e-09
 The 2D Integral is 3.1415 ± 0.0002 units**2
 
 3D Sphere inside Cube
-Average = 0.52359398, Integral = 4.18875184, Variance = 4.988866482155192e-09
-The 3D Integral is 4.1888 ± 0.0006 units**3
+Average = 0.52358551, Integral = 4.18868408, Variance = 4.988874474360798e-09
+The 3D Integral is 4.1887 ± 0.0006 units**3
 
 4D Shape inside Tesseract
-Average = 0.30847793, Integral = 4.93564688, Variance = 4.266385934058302e-09
-The 4D Integral is 4.9356 ± 0.0010 units**4
+Average = 0.3084637, Integral = 4.9354192, Variance = 4.2662769156462e-09
+The 4D Integral is 4.9354 ± 0.0010 units**4
 
 5D Shape inside Hypersquare
-Average = 0.16444693, Integral = 5.26230176, Variance = 2.7480827442715016e-09
-The 5D Integral is 5.2623 ± 0.0017 units**5
+Average = 0.16447179, Integral = 5.26309728, Variance = 2.7484164058839177e-09
+The 5D Integral is 5.2631 ± 0.0017 units**5
 
 
 Test Case 2
 
+
 1D Normal Distribution, [sigma = 1], [x0 = 0]
-Average = 0.5000250935926979, Integral = 1.0000501871853957, Variance = 1.4946420580291342e-09
-The 1D Integral is 1.0001 ± 0.0001 units**1
+Average = 0.4999519845458154, Integral = 0.9999039690916308, Variance = 1.49462197849722e-09
+The 1D Integral is 0.9999 ± 0.0001 units**1
 
 1D Normal Distribution, [sigma = 3], [x0 = 1]
-Average = 0.5000307374485992, Integral = 1.0000614748971983, Variance = 7.69258199066576e-09
-The 1D Integral is 1.0001 ± 0.0002 units**1
-
-1D Normal Distribution, [sigma = 5], [x0 = -1]
-Average = 0.5000205413690184, Integral = 1.0000410827380368, Variance = 1.2221930391587659e-08
+Average = 0.5000037795635226, Integral = 1.0000075591270452, Variance = 7.690580333379639e-09
 The 1D Integral is 1.0000 ± 0.0002 units**1
 
+1D Normal Distribution, [sigma = 5], [x0 = -1]
+Average = 0.500097829966252, Integral = 1.000195659932504, Variance = 1.2221675389788698e-08
+The 1D Integral is 1.0002 ± 0.0002 units**1
+
 6D Normal Distribution, [sigma = 1], [x0 = 0]
-Average = 1.5465792615988305, Integral = 98.98107274232515, Variance = 1.8184761067324822e-07
-The 6D Integral is 98.9811 ± 0.0273 units**6
+Average = 1.5462749616382243, Integral = 98.96159754484636, Variance = 1.819264430249027e-07
+The 6D Integral is 98.9616 ± 0.0273 units**6
 
 6D Normal Distribution, [sigma = 3], [x0 = 1]
-Average = 376.8018793699622, Integral = 24115.32027967758, Variance = 0.721873285355528
-The 6D Integral is 24115.3203 ± 54.3764 units**6
+Average = 375.61183562365534, Integral = 24039.15747991394, Variance = 0.8129987891342559
+The 6D Integral is 24039.1575 ± 57.7065 units**6
 
 6D Normal Distribution, [sigma = 5], [x0 = -1]
-Average = 4872.851924339384, Integral = 311862.52315772057, Variance = 938.3328050673566
-The 6D Integral is 311862.5232 ± 1960.4620 units**6
+Average = 4830.9982315417255, Integral = 309183.88681867043, Variance = 915.3029116341703
+The 6D Integral is 309183.8868 ± 1936.2543 units**6
 
-The runtime was 120.7256 seconds for 2 processors
+The runtime was 103.4622 seconds for 2 processors
 
 
 4 Processor(s)
 
 Test Case 1
 
+
 2D Circle inside Square
-Average = 0.78536936, Integral = 3.14147744, Variance = 6.7425731349276145e-09
-The 2D Integral is 3.1415 ± 0.0003 units**2
+Average = 0.78546267, Integral = 3.14185068, Variance = 6.740442561458844e-09
+The 2D Integral is 3.1419 ± 0.0003 units**2
 
 3D Sphere inside Cube
-Average = 0.5236707300000001, Integral = 4.189365840000001, Variance = 9.977587861650684e-09
-The 3D Integral is 4.1894 ± 0.0008 units**3
+Average = 0.52363855, Integral = 4.1891084, Variance = 9.9776487581559e-09
+The 3D Integral is 4.1891 ± 0.0008 units**3
 
 4D Shape inside Tesseract
-Average = 0.30842601000000003, Integral = 4.9348161600000005, Variance = 8.531976254219197e-09
-The 4D Integral is 4.9348 ± 0.0015 units**4
+Average = 0.30844134, Integral = 4.93506144, Variance = 8.532211191160177e-09
+The 4D Integral is 4.9351 ± 0.0015 units**4
 
 5D Shape inside Hypersquare
-Average = 0.16451976, Integral = 5.26463232, Variance = 5.498120342781696e-09
-The 5D Integral is 5.2646 ± 0.0024 units**5
+Average = 0.16448561, Integral = 5.26353952, Variance = 5.497203764117116e-09
+The 5D Integral is 5.2635 ± 0.0024 units**5
 
 
 Test Case 2
 
+
 1D Normal Distribution, [sigma = 1], [x0 = 0]
-Average = 0.4999982473861624, Integral = 0.9999964947723248, Variance = 2.9894412742611908e-09
-The 1D Integral is 1.0000 ± 0.0001 units**1
+Average = 0.4999669439776616, Integral = 0.9999338879553232, Variance = 2.988398790531012e-09
+The 1D Integral is 0.9999 ± 0.0001 units**1
 
 1D Normal Distribution, [sigma = 3], [x0 = 1]
-Average = 0.50002796256231, Integral = 1.00005592512462, Variance = 1.5385289174976286e-08
-The 1D Integral is 1.0001 ± 0.0002 units**1
+Average = 0.500002760973238, Integral = 1.000005521946476, Variance = 1.53818209610425e-08
+The 1D Integral is 1.0000 ± 0.0002 units**1
 
 1D Normal Distribution, [sigma = 5], [x0 = -1]
-Average = 0.5000849012945221, Integral = 1.0001698025890442, Variance = 2.4448170060756346e-08
-The 1D Integral is 1.0002 ± 0.0003 units**1
+Average = 0.5000606694134381, Integral = 1.0001213388268761, Variance = 2.444659388513566e-08
+The 1D Integral is 1.0001 ± 0.0003 units**1
 
 6D Normal Distribution, [sigma = 1], [x0 = 0]
-Average = 1.5465543303862523, Integral = 98.97947714472015, Variance = 3.6398043050212175e-07
-The 6D Integral is 98.9795 ± 0.0386 units**6
+Average = 1.5460633675455133, Integral = 98.94805552291285, Variance = 3.6363602310566203e-07
+The 6D Integral is 98.9481 ± 0.0386 units**6
 
 6D Normal Distribution, [sigma = 3], [x0 = 1]
-Average = 375.11178680986484, Integral = 24007.15435583135, Variance = 1.4735752670889408
-The 6D Integral is 24007.1544 ± 77.6902 units**6
+Average = 376.7471168025336, Integral = 24111.81547536215, Variance = 1.5624670641707519
+The 6D Integral is 24111.8155 ± 79.9992 units**6
 
 6D Normal Distribution, [sigma = 5], [x0 = -1]
-Average = 4829.483026741831, Integral = 309086.9137114772, Variance = 1502.9399052745405
-The 6D Integral is 309086.9137 ± 2481.1372 units**6
+Average = 4833.393259814963, Integral = 309337.16862815764, Variance = 1662.3965974611929
+The 6D Integral is 309337.1686 ± 2609.4399 units**6
 
-The runtime was 50.0881 seconds for 4 processors
+The runtime was 57.8178 seconds for 4 processors
 
 
 8 Processor(s)
 
 Test Case 1
 
+
 2D Circle inside Square
-Average = 0.7854174199999999, Integral = 3.1416696799999997, Variance = 1.3482951708843496e-08
+Average = 0.78543699, Integral = 3.14174796, Variance = 1.3482057979179194e-08
 The 2D Integral is 3.1417 ± 0.0005 units**2
 
 3D Sphere inside Cube
-Average = 0.52362544, Integral = 4.18900352, Variance = 1.995534708678451e-08
-The 3D Integral is 4.1890 ± 0.0011 units**3
+Average = 0.52360684, Integral = 4.18885472, Variance = 1.995541736841715e-08
+The 3D Integral is 4.1889 ± 0.0011 units**3
 
 4D Shape inside Tesseract
-Average = 0.30838673, Integral = 4.93418768, Variance = 1.7062748380792566e-08
-The 4D Integral is 4.9342 ± 0.0021 units**4
+Average = 0.3084383, Integral = 4.9350128, Variance = 1.70643292074488e-08
+The 4D Integral is 4.9350 ± 0.0021 units**4
 
 5D Shape inside Hypersquare
-Average = 0.16446570000000002, Integral = 5.262902400000001, Variance = 1.0993338681880802e-08
-The 5D Integral is 5.2629 ± 0.0034 units**5
+Average = 0.16452640000000002, Integral = 5.2648448000000005, Variance = 1.0996597096243202e-08
+The 5D Integral is 5.2648 ± 0.0034 units**5
 
 
 Test Case 2
 
+
 1D Normal Distribution, [sigma = 1], [x0 = 0]
-Average = 0.49993644255982583, Integral = 0.9998728851196517, Variance = 5.979137809398245e-09
-The 1D Integral is 0.9999 ± 0.0002 units**1
+Average = 0.5000197672980211, Integral = 1.0000395345960422, Variance = 5.977985466299809e-09
+The 1D Integral is 1.0000 ± 0.0002 units**1
 
 1D Normal Distribution, [sigma = 3], [x0 = 1]
-Average = 0.49999528586788355, Integral = 0.9999905717357671, Variance = 3.075912564433838e-08
-The 1D Integral is 1.0000 ± 0.0004 units**1
+Average = 0.5000993625872691, Integral = 1.0001987251745381, Variance = 3.077554420430988e-08
+The 1D Integral is 1.0002 ± 0.0004 units**1
 
 1D Normal Distribution, [sigma = 5], [x0 = -1]
-Average = 0.5000080472042578, Integral = 1.0000160944085157, Variance = 4.889302247743281e-08
-The 1D Integral is 1.0000 ± 0.0004 units**1
+Average = 0.4999529708230798, Integral = 0.9999059416461596, Variance = 4.887331425864538e-08
+The 1D Integral is 0.9999 ± 0.0004 units**1
 
 6D Normal Distribution, [sigma = 1], [x0 = 0]
-Average = 1.546285710159112, Integral = 98.96228545018317, Variance = 7.272617303711355e-07
-The 6D Integral is 98.9623 ± 0.0546 units**6
+Average = 1.5461645554059715, Integral = 98.95453154598218, Variance = 7.270579436971134e-07
+The 6D Integral is 98.9545 ± 0.0546 units**6
 
 6D Normal Distribution, [sigma = 3], [x0 = 1]
-Average = 375.0345555191732, Integral = 24002.211553227084, Variance = 2.9812674680795013
-The 6D Integral is 24002.2116 ± 110.5046 units**6
+Average = 375.7771743988199, Integral = 24049.739161524474, Variance = 3.040043605065865
+The 6D Integral is 24049.7392 ± 111.5886 units**6
 
 6D Normal Distribution, [sigma = 5], [x0 = -1]
-Average = 4831.26481642803, Integral = 309200.9482513939, Variance = 3076.0475514413806
-The 6D Integral is 309200.9483 ± 3549.5761 units**6
+Average = 4836.722016298678, Integral = 309550.2090431154, Variance = 3543.806996870111
+The 6D Integral is 309550.2090 ± 3809.9125 units**6
 
-The runtime was 27.3892 seconds for 8 processors
+The runtime was 25.4983 seconds for 8 processors
 
 
 16 Processor(s)
 
 Test Case 1
 
+
 2D Circle inside Square
-Average = 0.7853243599999999, Integral = 3.1412974399999998, Variance = 2.697440153449447e-08
-The 2D Integral is 3.1413 ± 0.0007 units**2
+Average = 0.78546644, Integral = 3.14186576, Variance = 2.6961425861396223e-08
+The 2D Integral is 3.1419 ± 0.0007 units**2
 
 3D Sphere inside Cube
-Average = 0.52356095, Integral = 4.1884876, Variance = 3.99111810616156e-08
-The 3D Integral is 4.1885 ± 0.0016 units**3
+Average = 0.52359293, Integral = 4.18874344, Variance = 3.9910939784642416e-08
+The 3D Integral is 4.1887 ± 0.0016 units**3
 
 4D Shape inside Tesseract
-Average = 0.30847808, Integral = 4.93564928, Variance = 3.413109666552217e-08
-The 4D Integral is 4.9356 ± 0.0030 units**4
+Average = 0.30842068, Integral = 4.93473088, Variance = 3.4127578263734016e-08
+The 4D Integral is 4.9347 ± 0.0030 units**4
 
 5D Shape inside Hypersquare
-Average = 0.16452644, Integral = 5.26484608, Variance = 2.1993198486548226e-08
-The 5D Integral is 5.2648 ± 0.0047 units**5
+Average = 0.16451038, Integral = 5.26433216, Variance = 2.1991474379560897e-08
+The 5D Integral is 5.2643 ± 0.0047 units**5
 
 
 Test Case 2
 
+
 1D Normal Distribution, [sigma = 1], [x0 = 0]
-Average = 0.5000057708820332, Integral = 1.0000115417640665, Variance = 1.1957016720169182e-08
+Average = 0.5000031889421895, Integral = 1.000006377884379, Variance = 1.1955429431741883e-08
 The 1D Integral is 1.0000 ± 0.0002 units**1
 
 1D Normal Distribution, [sigma = 3], [x0 = 1]
-Average = 0.5001179659356314, Integral = 1.0002359318712628, Variance = 6.155822519813497e-08
-The 1D Integral is 1.0002 ± 0.0005 units**1
+Average = 0.49996525867583574, Integral = 0.9999305173516715, Variance = 6.151102534645569e-08
+The 1D Integral is 0.9999 ± 0.0005 units**1
 
 1D Normal Distribution, [sigma = 5], [x0 = -1]
-Average = 0.5000220928402282, Integral = 1.0000441856804565, Variance = 9.77667284038372e-08
-The 1D Integral is 1.0000 ± 0.0006 units**1
+Average = 0.5000339272971419, Integral = 1.0000678545942838, Variance = 9.776941309910534e-08
+The 1D Integral is 1.0001 ± 0.0006 units**1
 
 6D Normal Distribution, [sigma = 1], [x0 = 0]
-Average = 1.546502128317285, Integral = 98.97613621230624, Variance = 1.4544201261015929e-06
-The 6D Integral is 98.9761 ± 0.0772 units**6
+Average = 1.5464589436577225, Integral = 98.97337239409424, Variance = 1.4547692069844443e-06
+The 6D Integral is 98.9734 ± 0.0772 units**6
 
 6D Normal Distribution, [sigma = 3], [x0 = 1]
-Average = 375.7962943016665, Integral = 24050.962835306655, Variance = 6.482679920181146
-The 6D Integral is 24050.9628 ± 162.9511 units**6
+Average = 374.81141198727585, Integral = 23987.930367185654, Variance = 5.596190281265782
+The 6D Integral is 23987.9304 ± 151.4001 units**6
 
 6D Normal Distribution, [sigma = 5], [x0 = -1]
-Average = 4839.37581316499, Integral = 309720.0520425594, Variance = 5921.80896024815
-The 6D Integral is 309720.0520 ± 4925.0106 units**6
+Average = 4861.348340552144, Integral = 311126.2937953372, Variance = 7208.871355384766
+The 6D Integral is 311126.2938 ± 5433.9246 units**6
 
-The runtime was 19.3588 seconds for 16 processors
+The runtime was 20.3269 seconds for 16 processors
 
 
 ===================================================================================
-SLURM job 11956931 ended:     Thu Mar 27 12:52:42 GMT 2025 (Unix Epoch time: 1743079962)
-This is an estimated end time using the 'date' command from node wee14.hpc.strath.ac.uk
-For accurate timings, use 'sacct -j 11956931 -X --format=Submit,Start,End,Elapsed'
+SLURM job 11956936 ended:     Thu Mar 27 13:26:39 GMT 2025 (Unix Epoch time: 1743081999)
+This is an estimated end time using the 'date' command from node wee15.hpc.strath.ac.uk
+For accurate timings, use 'sacct -j 11956936 -X --format=Submit,Start,End,Elapsed'
 ======================================================================================
