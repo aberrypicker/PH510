@@ -2,7 +2,7 @@
 """
 Version: Python 3.12.8
 
-Licensed and Copyrghted 2025.
+Copyright 2025: Aaron Berryman. Licensed under MIT license.
 
 This file contains the code and documentation for the class which defines the normal distribution,
 how it varies dimensionally, and how it can be substitutied to perform infinite integral calculations.
@@ -17,7 +17,12 @@ class Gaussian:
     """
     def __init__(self, x0, sigma, n, d):
         """
-        Create conditions for the Gaussian distribution.
+        Create conditions for the Gaussian distribution. This includes the variables which
+        make up the equation for the distribution's function such as its' initial location x0
+        and distribution width sigma, the parameters which determine how many samples are taken
+        across the function. Then n the number of random samples to be taken across the distribution
+        and d the number of dimensions in which the distribution is situated. The transformation 
+        variables are also defined in this initialisation, covering t and x.
         """
         self.x0 = x0
         self.sigma = sigma

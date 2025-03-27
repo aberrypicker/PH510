@@ -10,7 +10,7 @@
 # No of cores required (max. of 16, 4GB RAM per core)
 #SBATCH --ntasks=16
 # Runtime (hard, HH:MM:SS)
-#SBATCH --time=00:18:00
+#SBATCH --time=00:30:00
 # Job name
 #SBATCH --job-name=assignment_3_code.py
 # Output file
@@ -24,6 +24,14 @@ module load miniconda/3.12.8
 
 pylint --extension-pkg-allow-list=mpi4py.MPI assignment_3_code.py
 # Modify the line below to run your program
+mpirun -np 1 ./assignment_3_code.py
+
+mpirun -np 2 ./assignment_3_code.py
+
+mpirun -np 4 ./assignment_3_code.py
+
+mpirun -np 8 ./assignment_3_code.py
+
 mpirun -np 16 ./assignment_3_code.py
 # Output
 /opt/software/scripts/job_epilogue.sh

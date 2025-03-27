@@ -2,7 +2,7 @@
 """
 Version: Python 3.12.8
 
-Licensed and Copyrghted 2025.
+Copyright 2025: Aaron Berryman. Licensed under MIT license.
 
 This file contains a class which allow Monte Carlo simulations to be ran using random
 number sampling. Each subclass has documentation explaining its' subclasses and processes.

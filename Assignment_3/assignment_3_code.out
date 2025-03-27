@@ -1,7 +1,7 @@
 ===================================================================================
-SLURM Job ID:            11935317
-Submit time:             Wed Mar 26 13:31:56 GMT 2025 (Unix Epoch time: 1742995916)
-Start time:              Wed Mar 26 13:31:57 GMT 2025 (Unix Epoch time: 1742995917)
+SLURM Job ID:            11956902
+Submit time:             Thu Mar 27 12:07:34 GMT 2025 (Unix Epoch time: 1743077254)
+Start time:              Thu Mar 27 12:07:35 GMT 2025 (Unix Epoch time: 1743077255)
 No. nodes:               1
 No. tasks:               16
 Job name:                assignment_3_code.py
@@ -10,8 +10,8 @@ QoS:                     teaching
 Partition (queue):       teaching
 Submit directory:        /users/gpb20141/PH510/Assignment_3
 Script name:             /users/gpb20141/PH510/Assignment_3/assignment_3_slurm.sh
-Master node:             wee09
-Nodes used:              wee09
+Master node:             wee14
+Nodes used:              wee14
 Task distribution:       block:block
 ===================================================================================
 
@@ -19,26 +19,153 @@ Task distribution:       block:block
 --------------------------------------------------------------------
 Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
-Average = 0.7855448125, Integral = 3.14217925, Variance = 1.6846416005433983e-07
-The 2D Integral is 3.1422 ± 0.0016 units**2
+1 Processor(s)
 
-Average = 0.5234431875, Integral = 4.1875455, Variance = 2.494504169598398e-07
-The 3D Integral is 4.1875 ± 0.0040 units**3
+2D Circle inside Square
+Average = 0.7853925, Integral = 3.14157, Variance = 1.6855112094375003e-09
+The 2D Integral is 3.1416 ± 0.0002 units**2
 
-Average = 0.30844, Integral = 4.93504, Variance = 2.133047664e-07
-The 4D Integral is 4.9350 ± 0.0074 units**4
+3D Sphere inside Cube
+Average = 0.52355784, Integral = 4.18846272, Variance = 2.494450281745344e-09
+The 3D Integral is 4.1885 ± 0.0004 units**3
 
-Average = 0.164379375, Integral = 5.26014, Variance = 1.3735879607460937e-07
-The 5D Integral is 5.2601 ± 0.0119 units**5
+4D Shape inside Tesseract
+Average = 0.30842138, Integral = 4.93474208, Variance = 2.132976323588956e-09
+The 4D Integral is 4.9347 ± 0.0007 units**4
 
-Average = 0.4999857451415184, Integral = 0.9999714902830368, Variance = 7.473433784447673e-08
-The 1D Integral is 1.0000 ± 0.0005 units**1
+5D Shape inside Hypersquare
+Average = 0.16455355, Integral = 5.2657136, Variance = 1.3747567918239751e-09
+The 5D Integral is 5.2657 ± 0.0012 units**5
 
-Average = 1.5460298459322004, Integral = 98.94591013966082, Variance = 9.08778939787566e-06
-The 6D Integral is 98.9459 ± 0.1929 units**6
+1D Normal Distribution
+Average = 0.4999800997314065, Integral = 0.999960199462813, Variance = 7.472167723499104e-10
+The 1D Integral is 1.0000 ± 0.0001 units**1
+
+6D Normal Distribution
+Average = 1.5464551225303085, Integral = 98.97312784193974, Variance = 9.095673497265917e-08
+The 6D Integral is 98.9731 ± 0.0193 units**6
+
+The runtime was 87.0179 seconds for 1 processors
+
+
+2 Processor(s)
+
+2D Circle inside Square
+Average = 0.7853442100000001, Integral = 3.1413768400000004, Variance = 3.3715736363895178e-09
+The 2D Integral is 3.1414 ± 0.0002 units**2
+
+3D Sphere inside Cube
+Average = 0.5235977700000001, Integral = 4.188782160000001, Variance = 4.988862905020542e-09
+The 3D Integral is 4.1888 ± 0.0006 units**3
+
+4D Shape inside Tesseract
+Average = 0.30837848, Integral = 4.93405568, Variance = 4.265623861457792e-09
+The 4D Integral is 4.9341 ± 0.0010 units**4
+
+5D Shape inside Hypersquare
+Average = 0.16449316000000003, Integral = 5.263781120000001, Variance = 2.7487032062642884e-09
+The 5D Integral is 5.2638 ± 0.0017 units**5
+
+1D Normal Distribution
+Average = 0.4999691984267115, Integral = 0.999938396853423, Variance = 1.4947908968243863e-09
+The 1D Integral is 0.9999 ± 0.0001 units**1
+
+6D Normal Distribution
+Average = 1.546676060227837, Integral = 98.98726785458157, Variance = 1.8190928690554249e-07
+The 6D Integral is 98.9873 ± 0.0273 units**6
+
+The runtime was 44.6455 seconds for 2 processors
+
+
+4 Processor(s)
+
+2D Circle inside Square
+Average = 0.78538172, Integral = 3.14152688, Variance = 6.742290955593666e-09
+The 2D Integral is 3.1415 ± 0.0003 units**2
+
+3D Sphere inside Cube
+Average = 0.52361796, Integral = 4.18894368, Variance = 9.977687678617535e-09
+The 3D Integral is 4.1889 ± 0.0008 units**3
+
+4D Shape inside Tesseract
+Average = 0.3084262, Integral = 4.9348192, Variance = 8.5319791661424e-09
+The 4D Integral is 4.9348 ± 0.0015 units**4
+
+5D Shape inside Hypersquare
+Average = 0.16447992, Integral = 5.26335744, Variance = 5.497051036671744e-09
+The 5D Integral is 5.2634 ± 0.0024 units**5
+
+1D Normal Distribution
+Average = 0.5000290212082038, Integral = 1.0000580424164076, Variance = 2.9889736804045477e-09
+The 1D Integral is 1.0001 ± 0.0001 units**1
+
+6D Normal Distribution
+Average = 1.5462903614299244, Integral = 98.96258313151516, Variance = 3.636956326046947e-07
+The 6D Integral is 98.9626 ± 0.0386 units**6
+
+The runtime was 23.9043 seconds for 4 processors
+
+
+8 Processor(s)
+
+2D Circle inside Square
+Average = 0.78537312, Integral = 3.14149248, Variance = 1.3484974590517248e-08
+The 2D Integral is 3.1415 ± 0.0005 units**2
+
+3D Sphere inside Cube
+Average = 0.52360049, Integral = 4.18880392, Variance = 1.995544134974079e-08
+The 3D Integral is 4.1888 ± 0.0011 units**3
+
+4D Shape inside Tesseract
+Average = 0.30837291, Integral = 4.93396656, Variance = 1.7062324670250552e-08
+The 4D Integral is 4.9340 ± 0.0021 units**4
+
+5D Shape inside Hypersquare
+Average = 0.16446887, Integral = 5.26300384, Variance = 1.0993508864073847e-08
+The 5D Integral is 5.2630 ± 0.0034 units**5
+
+1D Normal Distribution
+Average = 0.4999865808416015, Integral = 0.999973161683203, Variance = 5.9775269488596575e-09
+The 1D Integral is 1.0000 ± 0.0002 units**1
+
+6D Normal Distribution
+Average = 1.5464882258662862, Integral = 98.97524645544232, Variance = 7.274226635290325e-07
+The 6D Integral is 98.9752 ± 0.0546 units**6
+
+The runtime was 13.2632 seconds for 8 processors
+
+
+16 Processor(s)
+
+2D Circle inside Square
+Average = 0.78537331, Integral = 3.14149324, Variance = 2.6969931830343034e-08
+The 2D Integral is 3.1415 ± 0.0007 units**2
+
+3D Sphere inside Cube
+Average = 0.52364061, Integral = 4.18912488, Variance = 3.991057944941247e-08
+The 3D Integral is 4.1891 ± 0.0016 units**3
+
+4D Shape inside Tesseract
+Average = 0.30839177, Integral = 4.93426832, Variance = 3.412580579140274e-08
+The 4D Integral is 4.9343 ± 0.0030 units**4
+
+5D Shape inside Hypersquare
+Average = 0.16449948, Integral = 5.26398336, Variance = 2.1990304172756735e-08
+The 5D Integral is 5.2640 ± 0.0047 units**5
+
+1D Normal Distribution
+Average = 0.49997783260936834, Integral = 0.9999556652187367, Variance = 1.1956611819829454e-08
+The 1D Integral is 1.0000 ± 0.0002 units**1
+
+6D Normal Distribution
+Average = 1.5458153925084108, Integral = 98.93218512053829, Variance = 1.4539994953578646e-06
+The 6D Integral is 98.9322 ± 0.0772 units**6
+
+The runtime was 9.3977 seconds for 16 processors
+
 
 ===================================================================================
-SLURM job 11935317 ended:     Wed Mar 26 13:32:27 GMT 2025 (Unix Epoch time: 1742995947)
-This is an estimated end time using the 'date' command from node wee09.hpc.strath.ac.uk
-For accurate timings, use 'sacct -j 11935317 -X --format=Submit,Start,End,Elapsed'
+SLURM job 11956902 ended:     Thu Mar 27 12:10:40 GMT 2025 (Unix Epoch time: 1743077440)
+This is an estimated end time using the 'date' command from node wee14.hpc.strath.ac.uk
+For accurate timings, use 'sacct -j 11956902 -X --format=Submit,Start,End,Elapsed'
 ======================================================================================

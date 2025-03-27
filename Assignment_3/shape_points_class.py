@@ -2,7 +2,7 @@
 """
 Version: Python 3.12.8
 
-Licensed and Copyrghted 2025.
+Copyright 2025: Aaron Berryman. Licensed under MIT license.
 
 This file contains the code and documentation for the class which defines points
 inside shapes of varying dimensions.
