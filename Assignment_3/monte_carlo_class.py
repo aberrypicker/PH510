@@ -48,8 +48,13 @@ class MonteCarlo:
 
     def parallel_version(self):
         """
-        Combines integral calculation of function, variance of function, and other function
-        calculations into single sub-class.
+        Combines integral calculation of the function, variance of function, and other function
+        calculations into single sub-class, which is coded with MPI in mind such that it allows
+        the code to be ran using multiple processors in parallel. It involves determinations
+        for the number of processors involved to divide tasks fairly and efficiently. What it 
+        returns will be the integral of the function, its variance, using the expectation value
+        squared and the expectation of the squared mean value, to give the overall variance. It
+        then uses this to determine the overall uncertainty for the function's integral. 
         """
         mean = comm.reduce(self.average()[0], op=MPI.SUM, root=0)
         mean_squared = comm.reduce(self.average()[1], op=MPI.SUM, root=0)

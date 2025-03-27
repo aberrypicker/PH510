@@ -41,9 +41,12 @@ sample_3D = sp.Position(num_samples, 3)
 sample_4D = sp.Position(num_samples, 4)
 sample_5D = sp.Position(num_samples, 5)
 
-# Use the Monte Carlo class to 
+# Use the Monte Carlo class to process the data and return the required integral, variance,
+# average & uncertainty.
 Monte_2D = mc.MonteCarlo(sample_2D.r, sample_2D, -1, 1)
 if rank==0:
+    print("Test Case 1")
+    print()
     print("2D Circle inside Square")
 Monte_2D = Monte_2D.parallel_version()
 
@@ -62,20 +65,50 @@ if rank==0:
     print("5D Shape inside Hypersquare")
 Monte_5D = Monte_5D.parallel_version()
 
-# use the Gaussian class to initialise class objects
-dist_1 = ga.Gaussian(0, 1, num_samples, 1)
-dist_6 = ga.Gaussian(0, 1, num_samples, 6)
+# use the Gaussian class to initialise class objects, varying x0 and sigma to provide
+# different scenarios to simulate the normal distribution.
+dist_10 = ga.Gaussian(0, 1, num_samples, 1)
+dist_11 = ga.Gaussian(1, 3, num_samples, 1)
+dist_12 = ga.Gaussian(-1, 5, num_samples, 1)
+dist_60 = ga.Gaussian(0, 1, num_samples, 6)
+dist_61 = ga.Gaussian(1, 3, num_samples, 6)
+dist_62 = ga.Gaussian(-1, 5, num_samples, 6)
 
-Monte_1D = mc.MonteCarlo(dist_1.integral, dist_1, -1, 1)
+# Again use the Monte Carlo class to process the data and return the required integral,
+# variance, average & uncertainty.
+
+Monte_1D0 = mc.MonteCarlo(dist_10.integral, dist_10, -1, 1)
 if rank==0:
     print()
-    print("1D Normal Distribution")
-Monte_1D = Monte_1D.parallel_version()
+    print("Test Case 2")
+    print()
+    print(f"1D Normal Distribution, [sigma = {dist_10.sigma}], [x0 = {dist_10.x0}]")
+Monte_1D0 = Monte_1D0.parallel_version()
 
-Monte_6D = mc.MonteCarlo(dist_6.integral, dist_6, -1, 1)
+Monte_1D1 = mc.MonteCarlo(dist_11.integral, dist_11, -1, 1)
 if rank==0:
-    print("6D Normal Distribution")
-Monte_6D = Monte_6D.parallel_version()
+    print(f"1D Normal Distribution, [sigma = {dist_11.sigma}], [x0 = {dist_11.x0}]")
+Monte_1D1 = Monte_1D1.parallel_version()
+
+Monte_1D2 = mc.MonteCarlo(dist_12.integral, dist_12, -1, 1)
+if rank==0:
+    print(f"1D Normal Distribution, [sigma = {dist_12.sigma}], [x0 = {dist_12.x0}]")
+Monte_1D2 = Monte_1D2.parallel_version()
+
+Monte_6D0 = mc.MonteCarlo(dist_60.integral, dist_60, -1, 1)
+if rank==0:
+    print(f"6D Normal Distribution, [sigma = {dist_60.sigma}], [x0 = {dist_60.x0}]")
+Monte_6D0 = Monte_6D0.parallel_version()
+
+Monte_6D1 = mc.MonteCarlo(dist_61.integral, dist_61, -1, 1)
+if rank==0:
+    print(f"6D Normal Distribution, [sigma = {dist_61.sigma}], [x0 = {dist_61.x0}]")
+Monte_6D1 = Monte_6D1.parallel_version()
+
+Monte_6D2 = mc.MonteCarlo(dist_62.integral, dist_62, -1, 1)
+if rank==0:
+    print(f"6D Normal Distribution, [sigma = {dist_62.sigma}], [x0 = {dist_62.x0}]")
+Monte_6D2 = Monte_6D2.parallel_version()
 
 if rank==0:
     end_time = time.time()
