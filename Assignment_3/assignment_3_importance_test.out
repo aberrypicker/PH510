@@ -1,0 +1,54 @@
+Lmod has detected the following error: The following module(s) are unknown:
+"scipy"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "scipy"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+===================================================================================
+SLURM Job ID:            11957546
+Submit time:             Fri Mar 28 11:33:22 GMT 2025 (Unix Epoch time: 1743161602)
+Start time:              Fri Mar 28 11:33:22 GMT 2025 (Unix Epoch time: 1743161602)
+No. nodes:               1
+No. tasks:               16
+Job name:                importance_sampling_test.py
+Account:                 teaching
+QoS:                     teaching
+Partition (queue):       teaching
+Submit directory:        /users/gpb20141/PH510/Assignment_3
+Script name:             /users/gpb20141/PH510/Assignment_3/assignment_3_slurm.sh
+Master node:             wee14
+Nodes used:              wee14
+Task distribution:       block:block
+===================================================================================
+
+************* Module importance_sampling_test
+importance_sampling_test.py:100:0: C0301: Line too long (107/100) (line-too-long)
+importance_sampling_test.py:90:12: W0612: Unused variable 'weighted_integral1' (unused-variable)
+
+------------------------------------------------------------------
+Your code has been rated at 9.71/10 (previous run: 9.85/10, -0.15)
+
+16 Processor(s)
+
+
+Test Case 2
+
+
+1D Normal Distribution, [sigma = 1], [x0 = 0]
+Average = 0.49993805489592447, Integral = 0.9998761097918489, Variance = 1.1958536002051736e-08
+The 1D Integral is 0.9999 ± 0.0002 units**1
+
+Average = 0.49993805489592447, Weighted_Integral = 0.9998761097918489, Variance = 1.1958536002051736e-08
+The 1D Integral is 0.9999 ± 0.0017 units**1
+
+===================================================================================
+SLURM job 11957546 ended:     Fri Mar 28 11:33:19 GMT 2025 (Unix Epoch time: 1743161599)
+This is an estimated end time using the 'date' command from node wee14.hpc.strath.ac.uk
+For accurate timings, use 'sacct -j 11957546 -X --format=Submit,Start,End,Elapsed'
+======================================================================================
