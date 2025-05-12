@@ -8,10 +8,11 @@ Assignment 4: Using Green's Function and Random Walks to solve Poisson's Equatio
 			  for multiple examples.
 
 """
-import time
-from mpi4py import MPI
+#import time
+#from mpi4py import MPI
 import numpy as np
-import monte_carlo_class as mc
+import matplotlib.pyplot as plt
+#import monte_carlo_class as mc
 
 
 class Poisson_Grid:
@@ -101,7 +102,7 @@ class Poisson_Grid:
 
             if max_delta < tolerance:
                 print(f"The Grid has converged in {iteration} iterations.")
-                print(np.round(self.phi, 2)
+                print(np.round(self.phi, 2))
                 break
 
         else:
@@ -109,6 +110,34 @@ class Poisson_Grid:
         return self.phi
 
 
-boundary check
+#boundary check
 
-grid plot
+    def grid_plot(self):
+        """
+        Allows the poisson grid to be visualised.
+        """
+        extent = [0, self.l * 100, 0, self.l * 100] #cm conversion
+        plt.imshow(np.round(self.phi, 4), origin='lower', extent=extent, cmap='inferno')
+        plt.colorbar(label='Potential (V)')
+        plt.title("Potential Distribution")
+        plt.xlabel("x (cm)")
+        plt.ylabel("y (cm)")
+        plt.grid(False)
+        plt.show()
+
+example = Poisson_Grid(0.1, 50)
+phi, f = example.phi, example.f
+phi = example.boundary_condition('Q4-b')
+phi = example.grid_potential(10, 20, 5)
+phi = example.grid_potential(10, 30, 5)
+phi = example.grid_potential(25, 40, 3)
+phi = example.grid_potential(25, 10, 3)
+print(phi)
+print(example.fixed_potential)
+phi = example.overrelaxation_method()
+example.grid_plot()
+
+
+
+
+
