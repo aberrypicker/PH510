@@ -68,7 +68,46 @@ class Poisson_Grid:
 
         return self.phi
 
-def relax/overrelax
+    def overrelaxation_method(self, max_iteration=10000, tolerance = 1e-10):
+        """
+        Meditation or smthn i have legit no scoobies.
+        """
+        omega = 2/(1 + np.sin(np.pi/self.n))
+        for iteration in range(max_iteration):
+            max_delta = 0
+            for i in range(0, self.n):
+                for j in range(0, self.n):
+                    if (i, j) in self.fixed_potential:
+                        continue
+
+                    adjacent_charges = []
+
+                    if i + 1 < self.n:
+                        adjacent_charges.append(self.phi[i+1, j])
+
+                    if i - 1 >= 0:
+                        adjacent_charges.append(self.phi[i-1, j])
+
+                    if j + 1 < self.n:
+                        adjacent_charges.append(self.phi[i, j+1])
+
+                    if j - 1 >= 0:
+                        adjacent_charges.append(self.phi[i, j-1])
+
+                    initial_phi = self.phi[i, j]
+                    adjacent_calculation = -(self.h**2 * f[i, j]) + np.mean(adjacent_charges)
+                    self.phi[i, j] = (omega * adjacent_calculation) + ((1 - omega) * initial_phi)
+                    max_delta = max(max_delta, abs(self.phi[i, j] - initial_phi))
+
+            if max_delta < tolerance:
+                print(f"The Grid has converged in {iteration} iterations.")
+                print(np.round(self.phi, 2)
+                break
+
+        else:
+             print(f"Maximum iterations ({max_iteration}) reached without convergence.")
+        return self.phi
+
 
 boundary check
 
