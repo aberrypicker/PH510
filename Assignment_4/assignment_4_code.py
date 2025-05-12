@@ -110,8 +110,6 @@ class Poisson_Grid:
         return self.phi
 
 
-#boundary check
-
     def grid_plot(self):
         """
         Allows the poisson grid to be visualised.
@@ -125,17 +123,45 @@ class Poisson_Grid:
         plt.grid(False)
         plt.show()
 
+    def boundary_check(self, i, j):
+        """
+        performs a check to determine if the position of the walker is at the boundary of the grid.
+        """
+        return i == 0 or j == 0 or i == self.n - 1 or j == self.n - 1
+
+
+    def random_walker(self,initial_i, initial_j, n_walks = 100000):
+        """
+        Simulates random chance for walk to travel in any cardinal direction when making its
+        way to boundary.
+        """
+        values = []
+        for k in range(n_walks):
+            i, j = initial_i, initial_j
+            while not self.boundary_check(i, j):
+                direction = np.random.choice(['up', 'down', 'left', 'right'])
+                if direction == 'up':
+                    i += 1
+                elif direction == 'down':
+                    i -= 1
+                elif direction == 'left':
+                    j -= 1
+                elif direction == 'right':
+                    j += 1
+            if self.boundary_check(i, j):
+                values.append(self.phi[i, j])
+        return np.mean(values), np.std(values)
+
 example = Poisson_Grid(0.1, 50)
 phi, f = example.phi, example.f
-phi = example.boundary_condition('Q4-b')
-phi = example.grid_potential(10, 20, 5)
-phi = example.grid_potential(10, 30, 5)
-phi = example.grid_potential(25, 40, 3)
-phi = example.grid_potential(25, 10, 3)
+phi = example.boundary_condition('Q4-a')
+phi = example.grid_potential(25, 25, 5)
 print(phi)
 print(example.fixed_potential)
 phi = example.overrelaxation_method()
-example.grid_plot()
+#example.grid_plot()
+example.random_walker(25,25)
+print(example.random_walker(20,10)) 
 
 
 
