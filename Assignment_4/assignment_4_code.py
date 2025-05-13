@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 #import monte_carlo_class as mc
 
 
-class Poisson_Grid:
+class PoissonGrid:
     """
     Grid thing
     """
@@ -106,7 +106,7 @@ class Poisson_Grid:
                 break
 
         else:
-             print(f"Maximum iterations ({max_iteration}) reached without convergence.")
+            print(f"Maximum iterations ({max_iteration}) reached without convergence.")
         return self.phi
 
 
@@ -136,6 +136,7 @@ class Poisson_Grid:
         way to boundary.
         """
         values = []
+        k = 0
         for k in range(n_walks):
             i, j = initial_i, initial_j
             while not self.boundary_check(i, j):
@@ -150,9 +151,23 @@ class Poisson_Grid:
                     j += 1
             if self.boundary_check(i, j):
                 values.append(self.phi[i, j])
+                k = k + 1
         return np.mean(values), np.std(values)
 
-example = Poisson_Grid(0.1, 50)
+    def potential_check(self, point_i, point_j, n_walks_per_point=500):
+        """
+        Code to perform random walks to determine the potential at a specific desired point.
+        """
+        total = 0.0
+        for i in range(1, self.n - 1):
+            for j in range(1, self.n - 1):
+                if self.f[i, j] == 0:
+                    continue
+                green_function_value, _ = self.random_walker(point_i, point_j, n_walks_per_point)
+                total += green_function_value * self.f[i, j] * self.h**2
+        return total
+
+example = PoissonGrid(0.1, 50)
 phi, f = example.phi, example.f
 phi = example.boundary_condition('Q4-a')
 phi = example.grid_potential(25, 25, 5)
@@ -161,9 +176,5 @@ print(example.fixed_potential)
 phi = example.overrelaxation_method()
 #example.grid_plot()
 example.random_walker(25,25)
-print(example.random_walker(20,10)) 
-
-
-
-
-
+phi = example.random_walker(20,10, 10000)
+print(walk)
