@@ -17,7 +17,9 @@ import matplotlib.pyplot as plt
 
 class PoissonGrid:
     """
-    Grid thing
+    Defines a 2D version of the Poisson Equation, in a grid form of n by n. Between each spot
+    lies areas where potential can be determined, and charges can be placed. These all combine 
+    to affect Green's function, and random walks performed from points to the boundary.
     """
     def __init__(self, length, n_points):
         self.l = length
@@ -30,7 +32,7 @@ class PoissonGrid:
 
     def grid_potential(self, x, y, potential):
         """
-        Looks like volatge but isnt voltage, why is the unit a V fissics mfckers
+        Function sets the potential at each coordinate within the grid.
         """
         if 0 <= x < self.n and 0 <= y < self.n:
             self.phi[x,y] = potential
@@ -41,7 +43,7 @@ class PoissonGrid:
 
     def boundary_condition(self, bc_type):
         """
-        Fucntion behaviviour at edge.
+        Function which sets behaviour at edge of grid, termed as boundary conditions for the function.
         """
         if bc_type == 'Q4-a':
             self.phi[-1,:] = 1
@@ -167,24 +169,27 @@ class PoissonGrid:
                 total += green_function_value * self.f[i, j] * self.h**2
         return total
 
+# Question 4, Part 1a
 example1= PoissonGrid(0.1, 50)
 phi1, f = example1.phi, example1.f
 phi1 = example1.boundary_condition('Q4-a')
-phi1 = example1.grid_potential(25, 25, 5)
+phi1 = example1.grid_potential(25, 25, 0)
 phi1 = example1.overrelaxation_method()
 example1.grid_plot()
 
+# Question 4, Part 1b
 example2= PoissonGrid(0.1, 50)
 phi2, f = example2.phi, example2.f
 phi2 = example2.boundary_condition('Q4-b')
-phi2 = example2.grid_potential(25, 25, 5)
+phi2 = example2.grid_potential(25, 25, 0)
 phi2 = example2.overrelaxation_method()
 example2.grid_plot()
 
+# Question 4, Part 1c
 example3= PoissonGrid(0.1, 50)
 phi3, f = example3.phi, example3.f
 phi3 = example3.boundary_condition('Q4-c')
-phi3 = example3.grid_potential(25, 25, 5)
+phi3 = example3.grid_potential(25, 25, 0)
 phi3 = example3.overrelaxation_method()
 example3.grid_plot()
 #print(phi)
