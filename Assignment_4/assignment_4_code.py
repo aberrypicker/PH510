@@ -180,6 +180,46 @@ class PoissonGrid:
                 values.append(self.phi[i, j])
         return np.mean(values), np.std(values)
 
+    def random_walk_probabilities(self, starting_point_i, starting_point_j, num_walkers=100000):
+        """
+        Simulates random walkers starting at (starting_point_i, starting_point_j),
+        and returns the empirical probabilities of reaching each boundary point.
+        """
+        prob_grid = np.zeros((self.n, self.n))
+        site_visits = np.zeros((self.n, self.n))
+        boundary_hits = {}
+
+        # Initialize count for each boundary point
+        for i in range(self.n):
+            boundary_hits[(0, i)] = 0       # Bottom
+            boundary_hits[(self.n - 1, i)] = 0  # Top
+            boundary_hits[(i, 0)] = 0       # Left
+            boundary_hits[(i, self.n - 1)] = 0  # Right
+
+        for k in range(num_walkers):
+            i, j = starting_point_i, starting_point_j
+            while not self.boundary_check(i, j):
+                site_visits[(i, j)] += 1
+                direction = random.choice(['up', 'down', 'left', 'right'])
+                if direction == 'up':
+                    i += 1
+                elif direction == 'down':
+                    i -= 1
+                elif direction == 'left':
+                    j -= 1
+                elif direction == 'right':
+                    j += 1
+                site_visits[(i, j)] += 1
+            boundary_hits[(i, j)] += 1
+
+# These 'hits' are then used to fill the 2D probability grid, using the 
+# number of hits as a proportion of the total walks to give a probability.
+
+        for (i, j), count in boundary_hits.items():
+            prob_grid[i, j] = count / num_walkers
+        return prob_grid, site_visits
+
+
     def potential_check(self, point_i, point_j, n_walks_per_point=500):
         """
         Code to perform random walks to determine the potential at a specific desired point.
