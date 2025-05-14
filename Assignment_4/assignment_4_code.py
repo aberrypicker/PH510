@@ -99,7 +99,12 @@ class PoissonGrid:
 
     def overrelaxation_method(self, max_iteration=10000, tolerance = 1e-10):
         """
-        Meditation or smthn i have legit no scoobies.
+        Function which iteratively changes the potential at each grid point, by taking an average
+        from each adjacent point, in all 4 cardinal directions relative to each point. It also
+        accounts for boundary points, which only take points within the grid into consideration
+        when averaging. The iteration process will only stop when the changes in potential between
+        iterative steps are deemed to be minute enough that the potential across the grid has
+        converged, or if the maximum number of iterations has taken place.
         """
         omega = 2/(1 + np.sin(np.pi/self.n))
         for iteration in range(max_iteration):
@@ -153,7 +158,7 @@ class PoissonGrid:
 
     def boundary_check(self, i, j):
         """
-        Performs a check to determine if the position of the walker is at the boundary of the grid.
+        Performs a check to determine if the walk is at the boundary of the grid.
         """
         return i == 0 or j == 0 or i == self.n - 1 or j == self.n - 1
 
@@ -180,10 +185,11 @@ class PoissonGrid:
                 values.append(self.phi[i, j])
         return np.mean(values), np.std(values)
 
-    def random_walk_probabilities(self, starting_point_i, starting_point_j, num_walkers=100000):
+
+    def random_walk_probabilities(self, initial_i, initial_j, n_walks=100000):
         """
-        Simulates random walkers starting at (starting_point_i, starting_point_j),
-        and returns the empirical probabilities of reaching each boundary point.
+        Simulates random walks starting at the given set of coordinates (given by initial_i &
+        initial_j), and returns the empirical probabilities of reaching each boundary point.
         """
         prob_grid = np.zeros((self.n, self.n))
         site_visits = np.zeros((self.n, self.n))
@@ -196,8 +202,8 @@ class PoissonGrid:
             boundary_hits[(i, 0)] = 0       # Left
             boundary_hits[(i, self.n - 1)] = 0  # Right
 
-        for k in range(num_walkers):
-            i, j = starting_point_i, starting_point_j
+        for k in range(n_walks):
+            i, j = initial_i, initial_j
             while not self.boundary_check(i, j):
                 site_visits[(i, j)] += 1
                 direction = random.choice(['up', 'down', 'left', 'right'])
@@ -216,22 +222,51 @@ class PoissonGrid:
 # number of hits as a proportion of the total walks to give a probability.
 
         for (i, j), count in boundary_hits.items():
-            prob_grid[i, j] = count / num_walkers
+            prob_grid[i, j] = count / n_walks
         return prob_grid, site_visits
 
 
-    def potential_check(self, point_i, point_j, n_walks_per_point=500):
+#    def potential_check(self, point_i, point_j, n_walks_per_point=500):
+#        """
+#        Code to perform random walks to determine the potential at a specific desired point.
+#        """
+#        total = 0.0
+#        for i in range(1, self.n - 1):
+#            for j in range(1, self.n - 1):
+#                if self.f[i, j] == 0:
+#                    continue
+#                green_function_value, _ = self.random_walker(point_i, point_j, n_walks_per_point)
+#                total += green_function_value * self.f[i, j] * self.h**2
+#        return total
+
+    def get_potential(self, x, y):
+
         """
-        Code to perform random walks to determine the potential at a specific desired point.
+        By providing x and y coordinates, this function returns the known potential
+        at the specified point so long as it is within the grid boundaries, with an
+        error statement in case an outside coordinate is given.
         """
-        total = 0.0
-        for i in range(1, self.n - 1):
-            for j in range(1, self.n - 1):
-                if self.f[i, j] == 0:
-                    continue
-                green_function_value, _ = self.random_walker(point_i, point_j, n_walks_per_point)
-                total += green_function_value * self.f[i, j] * self.h**2
-        return total
+
+        if 0 <= x < self.n and 0 <= y < self.n:
+            return self.phi[x, y]
+        else:
+            raise ValueError(f"Invalid coordinates: ({x}, {y}) outside grid bounds.")
+
+
+    def greens_function(self, starting_point_i, starting_point_j, num_walkers=100000):
+        """
+        This function determines the charge at a given point in the grid for the purpose of
+        determining its' potential using Green's function, as the charge component makes up
+        half of the final determination of the potential Phi.
+        """
+        green_charge = np.zeros((self.n, self.n))
+        i, j = starting_point_i, starting_point_j
+        site_visits = self.random_walk_probabilities(i, j)[1]
+
+        for p in range(0, self.n):
+            for q in range(0, self.n):
+                green_charge[p, q] = self.h**2/num_walkers * site_visits[p, q]
+        return green_charge
 
 # Question 4, Part 1a
 example1= PoissonGrid(0.1, 9)
