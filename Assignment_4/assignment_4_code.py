@@ -71,6 +71,32 @@ class PoissonGrid:
 
         return self.phi
 
+
+    def charge_distribution_scenario(self, distribution_type):
+
+        """
+       
+
+        """
+        x = np.linspace(0, self.l, self.n)
+        y = np.linspace(0, self.l, self.n)
+        x, y = np.meshgrid(x, y, indexing='ij')
+
+        if distribution_type == 'uniform_10C':
+            charge = 10
+            self.f[:, :] = charge
+
+        elif distribution_type == 'linear_gradient_top_to_bottom':
+            for i in range(self.n):
+                self.f[i, :] = 1 - (i/(self.n - 1))
+
+        elif distribution_type == 'exp_decay':
+            x0, y0 = self.l/2, self.l/2
+            r = np.sqrt((x - x0)**2 + (y - y0)**2)
+            self.f[:, :] = np.exp(-2000 * np.abs(r))
+        return self.f
+
+
     def overrelaxation_method(self, max_iteration=10000, tolerance = 1e-10):
         """
         Meditation or smthn i have legit no scoobies.
@@ -98,7 +124,7 @@ class PoissonGrid:
                         adjacent_charges.append(self.phi[i, j-1])
 
                     initial_phi = self.phi[i, j]
-                    adjacent_calculation = -(self.h**2 * f[i, j]) + np.mean(adjacent_charges)
+                    adjacent_calculation = (0.25 * self.h**2 * f[i, j]) + np.mean(adjacent_charges)
                     self.phi[i, j] = (omega * adjacent_calculation) + ((1 - omega) * initial_phi)
                     max_delta = max(max_delta, abs(self.phi[i, j] - initial_phi))
 
@@ -127,19 +153,18 @@ class PoissonGrid:
 
     def boundary_check(self, i, j):
         """
-        performs a check to determine if the position of the walker is at the boundary of the grid.
+        Performs a check to determine if the position of the walker is at the boundary of the grid.
         """
         return i == 0 or j == 0 or i == self.n - 1 or j == self.n - 1
 
 
-    def random_walker(self,initial_i, initial_j, n_walks = 100000):
+    def random_walker(self,initial_i, initial_j, n_walks = 1000):
         """
         Simulates random chance for walk to travel in any cardinal direction when making its
         way to boundary.
         """
         values = []
-        k = 0
-        for k in range(n_walks):
+        for _ in range(n_walks):
             i, j = initial_i, initial_j
             while not self.boundary_check(i, j):
                 direction = np.random.choice(['up', 'down', 'left', 'right'])
@@ -153,7 +178,6 @@ class PoissonGrid:
                     j += 1
             if self.boundary_check(i, j):
                 values.append(self.phi[i, j])
-                k = k + 1
         return np.mean(values), np.std(values)
 
     def potential_check(self, point_i, point_j, n_walks_per_point=500):
@@ -170,33 +194,33 @@ class PoissonGrid:
         return total
 
 # Question 4, Part 1a
-example1= PoissonGrid(0.1, 50)
+example1= PoissonGrid(0.1, 9)
 phi1, f = example1.phi, example1.f
 phi1 = example1.boundary_condition('Q4-a')
-phi1 = example1.grid_potential(25, 25, 0)
+#phi1 = example1.grid_potential(4, 4, 0)
 phi1 = example1.overrelaxation_method()
 example1.grid_plot()
 
 # Question 4, Part 1b
-example2= PoissonGrid(0.1, 50)
-phi2, f = example2.phi, example2.f
-phi2 = example2.boundary_condition('Q4-b')
-phi2 = example2.grid_potential(25, 25, 0)
-phi2 = example2.overrelaxation_method()
-example2.grid_plot()
+#example2= PoissonGrid(0.1, 9)
+#phi2, f = example2.phi, example2.f
+#phi2 = example2.boundary_condition('Q4-b')
+#phi2 = example2.grid_potential(4, 4, 0)
+#phi2 = example2.overrelaxation_method()
+#example2.grid_plot()
 
 # Question 4, Part 1c
-example3= PoissonGrid(0.1, 50)
-phi3, f = example3.phi, example3.f
-phi3 = example3.boundary_condition('Q4-c')
-phi3 = example3.grid_potential(25, 25, 0)
-phi3 = example3.overrelaxation_method()
-example3.grid_plot()
+#example3= PoissonGrid(0.1, 9)
+#phi3, f = example3.phi, example3.f
+#phi3 = example3.boundary_condition('Q4-c')
+#phi3 = example3.grid_potential(25, 25, 0)
+#phi3 = example3.overrelaxation_method()
+#example3.grid_plot()
 #print(phi)
 #print(example.fixed_potential)
 
 
 
-#example.random_walker(25,25)
-#walk = example.random_walker(20,10, 10000)
-#print(walk)
+example1.random_walker(4,4)
+walk = example1.random_walker(4,4, 100)
+print(walk)
