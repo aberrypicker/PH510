@@ -292,6 +292,9 @@ class PoissonGrid:
 
 # Question 3
 
+# Performs random walk and evaluates the Green's function via probability for each specified
+# point from the assignment.
+
 print("Exercise 3")
 init_grid = PoissonGrid(0.10, 21)
 
@@ -312,7 +315,7 @@ print(f"At (2.5cm, 2.5cm):\n{b[0]}")
 init_grid.grid_plot(b[0], "Green's Function")
 init_grid.grid_plot(b[1], 'Number of Site Visits')
 
- 
+
 # Q3c
 c = init_grid.random_walk_probabilities(1, 5)
 print(f"At (0.1cm, 2.5cm):\n{c[0]}")
@@ -320,13 +323,41 @@ print(f"At (0.1cm, 2.5cm):\n{c[0]}")
 init_grid.grid_plot(c[0], "Green's Function")
 init_grid.grid_plot(c[1], 'Number of Site Visits')
 
- 
+
 # Q3d
 d = init_grid.random_walk_probabilities(1, 1)
 print(f"At (0.1cm, 0.1cm):\n{d[0]}")
 
 init_grid.grid_plot(d[0], "Green's Function")
 init_grid.grid_plot(d[1], 'Number of Site Visits')
+print()
+
+# Question 4
+
+# Now evaluates the same cases as Question 3 but now with additional Potentials added
+# via boundary conditions, with the latter part of the question considering further
+# permutations with charge placed within the grid in various configurations.
+
+print("Exercise 4")
+print("Potential calculation via Green's function for a square grid of side length 10cm:")
+
+# Q4a
+print("Q4a with boundary conditions: All edges uniformly at +1V")
+init_grid = PoissonGrid(0.10, 21)
+
+phi_1 = init_grid.phi
+phi_1 = init_grid.boundary_condition('Q4-a')
+phi_1 = init_grid.overrelaxation_method()
+
+potential_50_50 = init_grid.greens_potential(10, 10)
+potential_25_25 = init_grid.greens_potential(5, 5)
+potential_1_25 = init_grid.greens_potential(1, 5)
+potential_1_1 = init_grid.greens_potential(1, 1)
+
+print(f"At (5cm, 5cm): {potential_50_50[0]}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]}V")
 print()
 
 
@@ -355,8 +386,6 @@ print()
 #example3.grid_plot()
 #print(phi)
 #print(example.fixed_potential)
-
-
 
 #example1.random_walker(4,4)
 #walk = example1.random_walker(4,4, 100)
