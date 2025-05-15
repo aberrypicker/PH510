@@ -32,7 +32,8 @@ class PoissonGrid:
 
     def grid_potential(self, x, y, potential):
         """
-        Function sets the potential at each coordinate within the grid.
+        Function sets a fixed potential at each coordinate called within the grid, or raises
+        an error if the called coordinate does not fall within the grid.
         """
         if 0 <= x < self.n and 0 <= y < self.n:
             self.phi[x,y] = potential
@@ -44,6 +45,15 @@ class PoissonGrid:
     def boundary_condition(self, bc_type):
         """
         Function sets behaviour at edge of grid, termed as boundary conditions for the function.
+        Mainly focuses on the 3 boundary conditions highlighted within the assignment, with 'Q4-a'
+        representing the case that all borders are at a potential of 1V, 'Q4-b' representing the
+        case that the top & bottom sides of the grid have a potential of 1V, and the left & right
+        hand sides have a potential of -1V. 'Q4-c' is the third case, where the top and left hand
+        hand sides have a potential of 1V, the bottom has a 2V potential, and the right hand side
+        has a potential of -4V. The function only contains these three cases but has the 
+        functionality to carry as many boundary condition cases as desired, so long as they are 
+        defined by a title. Any condition not in the function that is attempted to be called 
+        will return an error and statement that it does not recognise it.
         """
         if bc_type == 'Q4-a':
             self.phi[-1,:] = 1
@@ -59,7 +69,7 @@ class PoissonGrid:
             self.phi[-1,:] = 2
             self.phi[0,:] = 0
             self.phi[:,0] = 2
-            self.phi[:,-1] = 4
+            self.phi[:,-1] = -4
         else:
             raise ValueError(f"Boundary Condition not recognised: {bc_type}")
 
@@ -75,7 +85,8 @@ class PoissonGrid:
     def charge_distribution_scenario(self, distribution_type):
 
         """
-        Function changes the charge throughput the grid depending on desired cicumstances.
+        Function changes the charge throughout the grid depending on desired cicumstances, mainly 
+        focusing on the desired cases for the latter part of task 4.
 
         """
         x = np.linspace(0, self.l, self.n)
@@ -129,7 +140,8 @@ class PoissonGrid:
                         adjacent_charges.append(self.phi[i, j-1])
 
                     initial_phi = self.phi[i, j]
-                    adjacent_calculation = (0.25 * self.h**2 * self.f[i, j]) + np.mean(adjacent_charges)
+                    adj_term = 0.25 * self.h**2 * self.f[i, j]
+                    adjacent_calculation = adj_term + np.mean(adjacent_charges)
                     self.phi[i, j] = (omega * adjacent_calculation) + ((1 - omega) * initial_phi)
                     max_delta = max(max_delta, abs(self.phi[i, j] - initial_phi))
 
@@ -152,8 +164,8 @@ class PoissonGrid:
 
     def random_walker(self,initial_i, initial_j, n_walks = 1000):
         """
-        Simulates random chance for walk to travel in any cardinal direction when making its
-        way to boundary.
+        Simulates the random chance for walk to travel in any cardinal direction when making its
+        way to a boundary site.
         """
         values = []
         for _ in range(n_walks):
@@ -264,7 +276,9 @@ class PoissonGrid:
 
     def grid_plot(self, value, title):
         """
-        Function to allow the various grids to be visualised in a colour mapped figure.
+        Function to allow the various grids to be visualised in a colour mapped figure, and takes
+        a title from the input to allow dynamic changing based on the circumstance. Also contains
+        an SI conversion to ensure the grid is in cm.
         """
         plt.figure()
         extent = [0, self.l * 100, 0, self.l * 100] #cm conversion
@@ -275,4 +289,3 @@ class PoissonGrid:
         plt.ylabel("y (cm)")
         plt.grid(False)
         plt.show()
-

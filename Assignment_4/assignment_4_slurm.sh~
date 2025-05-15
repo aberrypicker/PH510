@@ -20,7 +20,7 @@
 module purge
 module load openmpi/gcc-8.5.0/4.1.1
 module load miniconda/3.12.8
-#module load scipy
+module load scipy
 
 /opt/software/scripts/job_prologue.sh
 

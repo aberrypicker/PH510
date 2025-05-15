@@ -1,19 +1,7 @@
-Lmod has detected the following error: The following module(s) are unknown:
-"scipy"
-
-Please check the spelling or version number. Also try "module spider ..."
-It is also possible your cache file is out-of-date; it may help to try:
-  $ module --ignore_cache load "scipy"
-
-Also make sure that all modulefiles written in TCL start with the string
-#%Module
-
-
-
 ===================================================================================
-SLURM Job ID:            12070780
-Submit time:             Thu May 15 15:06:01 BST 2025 (Unix Epoch time: 1747317961)
-Start time:              Thu May 15 15:06:28 BST 2025 (Unix Epoch time: 1747317988)
+SLURM Job ID:            12070876
+Submit time:             Thu May 15 15:52:34 BST 2025 (Unix Epoch time: 1747320754)
+Start time:              Thu May 15 15:52:34 BST 2025 (Unix Epoch time: 1747320754)
 No. nodes:               1
 No. tasks:               1
 Job name:                assignment_4_code.py
@@ -27,22 +15,8 @@ Nodes used:              wee10
 Task distribution:       block:block
 ===================================================================================
 
-************* Module assignment_4_code
-assignment_4_code.py:109:0: C0303: Trailing whitespace (trailing-whitespace)
-assignment_4_code.py:111:0: C0301: Line too long (106/100) (line-too-long)
-assignment_4_code.py:132:82: C0303: Trailing whitespace (trailing-whitespace)
-assignment_4_code.py:135:0: C0303: Trailing whitespace (trailing-whitespace)
-assignment_4_code.py:160:0: C0303: Trailing whitespace (trailing-whitespace)
-assignment_4_code.py:186:0: C0301: Line too long (106/100) (line-too-long)
-assignment_4_code.py:210:0: C0303: Trailing whitespace (trailing-whitespace)
-assignment_4_code.py:260:0: C0301: Line too long (106/100) (line-too-long)
-assignment_4_code.py:279:0: C0305: Trailing newlines (trailing-newlines)
-assignment_4_code.py:214:12: E0602: Undefined variable 'PoissonGrid' (undefined-variable)
-assignment_4_code.py:237:12: E0602: Undefined variable 'PoissonGrid' (undefined-variable)
-assignment_4_code.py:261:12: E0602: Undefined variable 'PoissonGrid' (undefined-variable)
-assignment_4_code.py:13:0: W0611: Unused numpy imported as np (unused-import)
-assignment_4_code.py:14:0: W0611: Unused matplotlib.pyplot imported as plt (unused-import)
 
-------------------------------------------------------------------
-Your code has been rated at 8.40/10 (previous run: 9.90/10, -1.50)
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
+slurmstepd: error: *** JOB 12070876 ON wee10 CANCELLED AT 2025-05-15T16:35:07 DUE TO TIME LIMIT ***
