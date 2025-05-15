@@ -305,31 +305,31 @@ print("Green's function evaluation for a square grid of side length 10cm:")
 a = init_grid.random_walk_probabilities(10, 10)
 print(f"At centre point (5cm, 5cm):\n{a[0]}")
 
-init_grid.grid_plot(a[0], "Green's Function")
-init_grid.grid_plot(a[1], 'Number of Site Visits')
+#init_grid.grid_plot(a[0], "Green's Function")
+#init_grid.grid_plot(a[1], 'Number of Site Visits')
 
 # Q3b
 b = init_grid.random_walk_probabilities(5, 5)
 print(f"At (2.5cm, 2.5cm):\n{b[0]}")
 
-init_grid.grid_plot(b[0], "Green's Function")
-init_grid.grid_plot(b[1], 'Number of Site Visits')
+#init_grid.grid_plot(b[0], "Green's Function")
+#init_grid.grid_plot(b[1], 'Number of Site Visits')
 
 
 # Q3c
 c = init_grid.random_walk_probabilities(1, 5)
 print(f"At (0.1cm, 2.5cm):\n{c[0]}")
 
-init_grid.grid_plot(c[0], "Green's Function")
-init_grid.grid_plot(c[1], 'Number of Site Visits')
+#init_grid.grid_plot(c[0], "Green's Function")
+#init_grid.grid_plot(c[1], 'Number of Site Visits')
 
 
 # Q3d
 d = init_grid.random_walk_probabilities(1, 1)
 print(f"At (0.1cm, 0.1cm):\n{d[0]}")
 
-init_grid.grid_plot(d[0], "Green's Function")
-init_grid.grid_plot(d[1], 'Number of Site Visits')
+#init_grid.grid_plot(d[0], "Green's Function")
+#init_grid.grid_plot(d[1], 'Number of Site Visits')
 print()
 
 # Question 4
@@ -360,6 +360,47 @@ print(f"At (0.1cm, 2.5cm): {potential_1_25[0]}V")
 print(f"At (0.1cm, 0.1cm): {potential_1_1[0]}V")
 print()
 
+
+# Q4b
+print("Q4b) with boundary conditions: Top and bottom edges at +1V, left and right edges at -1V")
+init_grid = PoissonGrid(0.10, 21)
+
+
+phi_2 = init_grid.phi
+phi_2 = init_grid.boundary_condition('Q4-b')
+phi_2 = init_grid.overrelaxation_method()
+
+potential_50_50 = init_grid.greens_potential(10, 10)
+potential_25_25 = init_grid.greens_potential(5, 5)
+potential_1_25 = init_grid.greens_potential(1, 5)
+potential_1_1 = init_grid.greens_potential(1, 1)
+
+print(f"At (5cm, 5cm): {potential_50_50[0]}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]}V")
+print()
+
+ 
+# Q4c
+print("Q4c) with boundary conditions: Top and left edges at +2V, bottom edge at 0V and right edge at -4V")
+init_grid = PoissonGrid(0.10, 21)
+
+
+phi_3 = init_grid.phi
+phi_3 = init_grid.boundary_condition('Q4-c')
+phi_3 = init_grid.overrelaxation_method()
+
+potential_50_50 = init_grid.greens_potential(10, 10)
+potential_25_25 = init_grid.greens_potential(5, 5)
+potential_1_25 = init_grid.greens_potential(1, 5)
+potential_1_1 = init_grid.greens_potential(1, 1)
+
+print(f"At (5cm, 5cm): {potential_50_50[0]}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]}V")
+print()
 
 # Question 4, Part 1a
 #example1= PoissonGrid(0.1, 9)
