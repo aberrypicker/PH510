@@ -79,10 +79,10 @@ potential_25_25 = init_grid.greens_potential(5, 5)
 potential_1_25 = init_grid.greens_potential(1, 5)
 potential_1_1 = init_grid.greens_potential(1, 1)
 
-print(f"At (5cm, 5cm): {potential_50_50[0]}V")
-print(f"At (2.5cm, 2.5cm): {potential_25_25[0]}V")
-print(f"At (0.1cm, 2.5cm): {potential_1_25[0]}V")
-print(f"At (0.1cm, 0.1cm): {potential_1_1[0]}V")
+print(f"At (5cm, 5cm): {potential_50_50[0]:.4f}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]:.4f}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]:.4f}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]:.4f}V")
 print()
 
 
@@ -100,10 +100,10 @@ potential_25_25 = init_grid.greens_potential(5, 5)
 potential_1_25 = init_grid.greens_potential(1, 5)
 potential_1_1 = init_grid.greens_potential(1, 1)
 
-print(f"At (5cm, 5cm): {potential_50_50[0]}V")
-print(f"At (2.5cm, 2.5cm): {potential_25_25[0]}V")
-print(f"At (0.1cm, 2.5cm): {potential_1_25[0]}V")
-print(f"At (0.1cm, 0.1cm): {potential_1_1[0]}V")
+print(f"At (5cm, 5cm): {potential_50_50[0]:.4f}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]:.4f}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]:.4f}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]:.4f}V")
 print()
 
  
@@ -121,10 +121,10 @@ potential_25_25 = init_grid.greens_potential(5, 5)
 potential_1_25 = init_grid.greens_potential(1, 5)
 potential_1_1 = init_grid.greens_potential(1, 1)
 
-print(f"At (5cm, 5cm): {potential_50_50[0]}V")
-print(f"At (2.5cm, 2.5cm): {potential_25_25[0]}V")
-print(f"At (0.1cm, 2.5cm): {potential_1_25[0]}V")
-print(f"At (0.1cm, 0.1cm): {potential_1_1[0]}V")
+print(f"At (5cm, 5cm): {potential_50_50[0]:.4f}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]:.4f}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]:.4f}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]:.4f}V")
 print()
 
 
@@ -152,10 +152,10 @@ potential_25_25 = init_grid.greens_potential(5, 5)
 potential_1_25 = init_grid.greens_potential(1, 5)
 potential_1_1 = init_grid.greens_potential(1, 1)
 
-print(f"At (5cm, 5cm): {potential_50_50[0]}V")
-print(f"At (2.5cm, 2.5cm): {potential_25_25[0]}V")
-print(f"At (0.1cm, 2.5cm): {potential_1_25[0]}V")
-print(f"At (0.1cm, 0.1cm): {potential_1_1[0]}V")
+print(f"At (5cm, 5cm): {potential_50_50[0]:.4f}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]:.4f}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]:.4f}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]:.4f}V")
 print()
  
 
@@ -175,10 +175,10 @@ potential_25_25 = init_grid.greens_potential(5, 5)
 potential_1_25 = init_grid.greens_potential(1, 5)
 potential_1_1 = init_grid.greens_potential(1, 1)
 
-print(f"At (5cm, 5cm): {potential_50_50[0]}V")
-print(f"At (2.5cm, 2.5cm): {potential_25_25[0]}V")
-print(f"At (0.1cm, 2.5cm): {potential_1_25[0]}V")
-print(f"At (0.1cm, 0.1cm): {potential_1_1[0]}V")
+print(f"At (5cm, 5cm): {potential_50_50[0]:.4f}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]:.4f}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]:.4f}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]:.4f}V")
 print()
 
 
@@ -197,9 +197,83 @@ potential_25_25 = init_grid.greens_potential(5, 5)
 potential_1_25 = init_grid.greens_potential(1, 5)
 potential_1_1 = init_grid.greens_potential(1, 1)
 
-print(f"At (5cm, 5cm): {potential_50_50[0]}V")
-print(f"At (2.5cm, 2.5cm): {potential_25_25[0]}V")
-print(f"At (0.1cm, 2.5cm): {potential_1_25[0]}V")
-print(f"At (0.1cm, 0.1cm): {potential_1_1[0]}V")
+print(f"At (5cm, 5cm): {potential_50_50[0]:.4f}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]:.4f}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]:.4f}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]:.4f}V")
+print()
+
+
+# Q4e
+print("Q4e) Repeat, with uniform charge gradient from 1C at top to 0C at bottom")
+print()
+ 
+
+# (i)
+print("i) with boundary conditions: All edges uniformly at +1V")
+init_grid = PoissonGrid(0.10, 21)
+
+
+phi_7 = init_grid.phi
+phi_7 = init_grid.boundary_condition('Q4-a')
+phi_7 = init_grid.overrelaxation_method()
+
+f_7 = init_grid.charge_distribution_scenario('linear_gradient_top_to_bottom')
+
+potential_50_50 = init_grid.greens_potential(10, 10)
+potential_25_25 = init_grid.greens_potential(5, 5)
+potential_1_25 = init_grid.greens_potential(1, 5)
+potential_1_1 = init_grid.greens_potential(1, 1)
+
+print(f"At (5cm, 5cm): {potential_50_50[0]:.4f}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]:.4f}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]:.4f}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]:.4f}V")
+print()
+
+
+# (ii)
+print("ii) with boundary conditions: Top and bottom edges at +1V, left and right edges at -1V")
+init_grid = PoissonGrid(0.10, 21)
+
+
+phi_8 = init_grid.phi
+phi_8 = init_grid.boundary_condition('Q4-b')
+phi_8 = init_grid.overrelaxation_method()
+
+f_8 = init_grid.charge_distribution_scenario('linear_gradient_top_to_bottom')
+
+potential_50_50 = init_grid.greens_potential(10, 10)
+potential_25_25 = init_grid.greens_potential(5, 5)
+potential_1_25 = init_grid.greens_potential(1, 5)
+potential_1_1 = init_grid.greens_potential(1, 1)
+
+print(f"At (5cm, 5cm): {potential_50_50[0]:.4f}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]:.4f}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]:.4f}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]:.4f}V")
+print()
+
+
+
+# (iii)
+print("iii) with boundary conditions: Top and left edges at +2V, bottom edge at 0V and right edge at -4V")
+init_grid = PoissonGrid(0.10, 21)
+
+phi_9 = init_grid.phi
+phi_9 = init_grid.boundary_condition('Q4-c')
+phi_9 = init_grid.overrelaxation_method()
+
+f_9 = init_grid.charge_distribution_scenario('linear_gradient_top_to_bottom')
+
+potential_50_50 = init_grid.greens_potential(10, 10)
+potential_25_25 = init_grid.greens_potential(5, 5)
+potential_1_25 = init_grid.greens_potential(1, 5)
+potential_1_1 = init_grid.greens_potential(1, 1)
+
+print(f"At (5cm, 5cm): {potential_50_50[0]:.4f}V")
+print(f"At (2.5cm, 2.5cm): {potential_25_25[0]:.4f}V")
+print(f"At (0.1cm, 2.5cm): {potential_1_25[0]:.4f}V")
+print(f"At (0.1cm, 0.1cm): {potential_1_1[0]:.4f}V")
 print()
 
