@@ -5,14 +5,13 @@ Version: Python 3.12.8
 Copyright 2025: Aaron Berryman. Licensed under MIT license.
 
 Assignment 4: Individual Code file for the Class created for the Poisson Grid,
-and Green's function calculations
+and Green's function calculations.
 
 """
 #import time
 #from mpi4py import MPI
 import numpy as np
 import matplotlib.pyplot as plt
-#import monte_carlo_class as mc
 
 
 class PoissonGrid:
@@ -21,14 +20,16 @@ class PoissonGrid:
     lies areas where potential can be determined, and charges can be placed. These all combine 
     to affect Green's function, and random walks performed from points to the boundary.
     """
-    def __init__(self, length, n_points):
+    def __init__(self, length, n_points, n_samples):
         self.l = length
         self.n = n_points
         self.h = self.l / (self.n - 1)
-        self.phi = np.random.uniform(0, 1000, (self.n, self.n))
+        self.phi = np.random.uniform(0, 10, (self.n, self.n))
         self.f = np.zeros((self.n, self.n))
         self.fixed_potential = set()
         self.fixed_charge = set()
+        self.d = 2
+        self.n_samples = n_samples
 
     def grid_potential(self, x, y, potential):
         """
@@ -94,8 +95,7 @@ class PoissonGrid:
         x, y = np.meshgrid(x, y, indexing='ij')
 
         if distribution_type == 'uniform_10C':
-            charge = 10
-            self.f[:, :] = charge
+            self.f[:, :] = 10
 
         elif distribution_type == 'linear_gradient_top_to_bottom':
             for i in range(self.n):
@@ -162,13 +162,13 @@ class PoissonGrid:
         return i == 0 or j == 0 or i == self.n - 1 or j == self.n - 1
 
 
-    def random_walker(self,initial_i, initial_j, n_walks = 1000):
+    def random_walker(self,initial_i, initial_j):
         """
         Simulates the random chance for walk to travel in any cardinal direction when making its
         way to a boundary site.
         """
         values = []
-        for _ in range(n_walks):
+        for _ in range(self.n_samples):
             i, j = initial_i, initial_j
             while not self.boundary_check(i, j):
                 direction = np.random.choice(['up', 'down', 'left', 'right'])
@@ -182,7 +182,7 @@ class PoissonGrid:
                     j += 1
             if self.boundary_check(i, j):
                 values.append(self.phi[i, j])
-        return np.mean(values), np.std(values)
+        return np.mean(values)
 
 
     def random_walk_probabilities(self, initial_i, initial_j, n_walks=100000):
@@ -191,7 +191,7 @@ class PoissonGrid:
         initial_j), and returns the empirical probabilities of reaching each boundary point.
         """
         prob_grid = np.zeros((self.n, self.n))
-        site_visits = np.zeros((self.n, self.n))
+        self.site_visits = np.zeros((self.n, self.n))
         boundary_hits = {}
 
         # Initialize count for each boundary point
@@ -204,7 +204,7 @@ class PoissonGrid:
         for _ in range(n_walks):
             i, j = initial_i, initial_j
             while not self.boundary_check(i, j):
-                site_visits[(i, j)] += 1
+                self.site_visits[(i, j)] += 1
                 direction = np.random.choice(['up', 'down', 'left', 'right'])
                 if direction == 'up':
                     i += 1
@@ -214,15 +214,15 @@ class PoissonGrid:
                     j -= 1
                 elif direction == 'right':
                     j += 1
-                site_visits[(i, j)] += 1
+            self.site_visits[(i, j)] += 1
             boundary_hits[(i, j)] += 1
 
 # These 'hits' are then used to fill the 2D probability grid, using the
 # number of hits as a proportion of the total walks to give a probability.
 
         for (i, j), count in boundary_hits.items():
-            prob_grid[i, j] = count / n_walks
-        return prob_grid, site_visits
+            prob_grid[i, j] = count / self.n_samples
+        return prob_grid
 
 
     def get_potential(self, x, y):
@@ -239,7 +239,7 @@ class PoissonGrid:
             raise ValueError(f"Invalid coordinates: ({x}, {y}) outside grid bounds.")
 
 
-    def greens_function(self, initial_i, initial_j, n_walks=100000):
+    def greens_charge(self, initial_i, initial_j):
         """
         This function determines the charge at a given point in the grid for the purpose of
         determining its' potential using Green's function, as the charge component makes up
@@ -248,11 +248,18 @@ class PoissonGrid:
         green_charge = np.zeros((self.n, self.n))
         i, j = initial_i, initial_j
         site_visits = self.random_walk_probabilities(i, j)[1]
-
         for p in range(0, self.n):
             for q in range(0, self.n):
-                green_charge[p, q] = self.h**2/n_walks * site_visits[p, q]
+                green_charge[p, q] = self.h**2/self.n_samples * self.site_visits[p, q]
         return green_charge
+
+    def greens_function(self, starting_point_i, starting_point_j):
+        """
+        Uses above charge component and probability component of the grid to deliver 
+        the Green's function.
+        """
+        i, j = starting_point_i, starting_point_j
+        return self.random_walk_probabilities(i, j) + self.greens_charge(i, j)
 
     def greens_potential(self, initial_i, initial_j, n_walks=100000):
         """
@@ -262,7 +269,6 @@ class PoissonGrid:
         i, j = initial_i, initial_j
         greens_laplace = self.random_walk_probabilities(i, j)[0]
         term1 = np.zeros((self.n, self.n))
-
         for x_b in range(0, self.n):
             for y_b in range(0, self.n):
                 if self.boundary_check(x_b, y_b):
@@ -271,8 +277,7 @@ class PoissonGrid:
         term1_sum = np.sum(term1)
         term2 = np.sum(self.greens_function(i, j) * self.f)
         phi_greens = term1_sum + term2
-
-        return phi_greens, greens_laplace, self.phi, term1, term2
+        return phi_greens
 
     def grid_plot(self, value, title):
         """
