@@ -143,19 +143,6 @@ class PoissonGrid:
         return self.phi
 
 
-    def grid_plot(self):
-        """
-        Allows the poisson grid to be visualised.
-        """
-        extent = [0, self.l * 100, 0, self.l * 100] #cm conversion
-        plt.imshow(np.round(self.phi, 4), origin='lower', extent=extent, cmap='inferno')
-        plt.colorbar(label='Potential (V)')
-        plt.title("Potential Distribution")
-        plt.xlabel("x (cm)")
-        plt.ylabel("y (cm)")
-        plt.grid(False)
-        plt.show()
-
     def boundary_check(self, i, j):
         """
         Performs a check to determine if the walk is at the boundary of the grid.
@@ -253,20 +240,54 @@ class PoissonGrid:
             raise ValueError(f"Invalid coordinates: ({x}, {y}) outside grid bounds.")
 
 
-    def greens_function(self, starting_point_i, starting_point_j, num_walkers=100000):
+    def greens_function(self, initial_i, initial_j, n_walks=100000):
         """
         This function determines the charge at a given point in the grid for the purpose of
         determining its' potential using Green's function, as the charge component makes up
         half of the final determination of the potential Phi.
         """
         green_charge = np.zeros((self.n, self.n))
-        i, j = starting_point_i, starting_point_j
+        i, j = initial_i, initial_j
         site_visits = self.random_walk_probabilities(i, j)[1]
 
         for p in range(0, self.n):
             for q in range(0, self.n):
-                green_charge[p, q] = self.h**2/num_walkers * site_visits[p, q]
+                green_charge[p, q] = self.h**2/n_walks * site_visits[p, q]
         return green_charge
+
+    def greens_potential(self, initial_i, initial_j, n_walks=100000):
+        """
+        Function to determine the other part of Green's function, using the boundary
+        probabilities as a summation, and the potential.
+        """
+        i, j = initial_i, initial_j
+        greens_laplace = self.random_walk_probabilities(i, j)[0]
+        term1 = np.zeros((self.n, self.n))
+
+        for x_b in range(0, self.n):
+            for y_b in range(0, self.n):
+                if self.boundary_check(x_b, y_b):
+                    term1[x_b, y_b] = greens_laplace[x_b, y_b] * self.phi[x_b, y_b]
+
+        term1_sum = np.sum(term1)
+        term2 = np.sum(self.greens_function(i, j) * self.f)
+        phi_greens = term1_sum + term2
+
+        return phi_greens, greens_laplace, self.phi, term1, term2
+
+    def grid_plot(self):
+        """
+        Function to allow the various grids to be visualised in a colour mapped figure.
+        """
+        extent = [0, self.l * 100, 0, self.l * 100] #cm conversion
+        plt.imshow(np.round(self.phi, 4), origin='lower', extent=extent, cmap='inferno')
+        plt.colorbar(label='Potential (V)')
+        plt.title("Potential Distribution")
+        plt.xlabel("x (cm)")
+        plt.ylabel("y (cm)")
+        plt.grid(False)
+        plt.show()
+
 
 # Question 4, Part 1a
 example1= PoissonGrid(0.1, 9)
