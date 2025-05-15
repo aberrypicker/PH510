@@ -43,7 +43,7 @@ class PoissonGrid:
 
     def boundary_condition(self, bc_type):
         """
-        Function which sets behaviour at edge of grid, termed as boundary conditions for the function.
+        Function sets behaviour at edge of grid, termed as boundary conditions for the function.
         """
         if bc_type == 'Q4-a':
             self.phi[-1,:] = 1
@@ -75,7 +75,7 @@ class PoissonGrid:
     def charge_distribution_scenario(self, distribution_type):
 
         """
-       
+        Function changes the charge throughput the grid depending on desired cicumstances.
 
         """
         x = np.linspace(0, self.l, self.n)
@@ -189,11 +189,11 @@ class PoissonGrid:
             boundary_hits[(i, 0)] = 0       # Left
             boundary_hits[(i, self.n - 1)] = 0  # Right
 
-        for k in range(n_walks):
+        for _ in range(n_walks):
             i, j = initial_i, initial_j
             while not self.boundary_check(i, j):
                 site_visits[(i, j)] += 1
-                direction = random.choice(['up', 'down', 'left', 'right'])
+                direction = np.random.choice(['up', 'down', 'left', 'right'])
                 if direction == 'up':
                     i += 1
                 elif direction == 'down':
@@ -205,7 +205,7 @@ class PoissonGrid:
                 site_visits[(i, j)] += 1
             boundary_hits[(i, j)] += 1
 
-# These 'hits' are then used to fill the 2D probability grid, using the 
+# These 'hits' are then used to fill the 2D probability grid, using the
 # number of hits as a proportion of the total walks to give a probability.
 
         for (i, j), count in boundary_hits.items():
@@ -275,27 +275,46 @@ class PoissonGrid:
 
         return phi_greens, greens_laplace, self.phi, term1, term2
 
-    def grid_plot(self):
+    def grid_plot(self, value, title):
         """
         Function to allow the various grids to be visualised in a colour mapped figure.
         """
+        plt.figure()
         extent = [0, self.l * 100, 0, self.l * 100] #cm conversion
-        plt.imshow(np.round(self.phi, 4), origin='lower', extent=extent, cmap='inferno')
+        plt.imshow(np.round(value, 4), origin='lower', extent=extent, cmap='inferno')
         plt.colorbar(label='Potential (V)')
-        plt.title("Potential Distribution")
+        plt.title(title)
         plt.xlabel("x (cm)")
         plt.ylabel("y (cm)")
         plt.grid(False)
         plt.show()
 
 
+# Question 3
+
+print("Exercise 3")
+init_grid = PoissonGrid(0.10, 21)
+
+phi, f = init_grid.phi, init_grid.f
+print("Green's function evaluation for a square grid of side length 10cm:")
+
+
+# (a)
+a = init_grid.random_walk_probabilities(10, 10)
+print(f"At centre point (5cm, 5cm):\n{a[0]}")
+
+init_grid.grid_plot(a[0], "Green's Function")
+init_grid.grid_plot(a[1], 'Number of Site Visits')
+
+
+
 # Question 4, Part 1a
-example1= PoissonGrid(0.1, 9)
-phi1, f = example1.phi, example1.f
-phi1 = example1.boundary_condition('Q4-a')
+#example1= PoissonGrid(0.1, 9)
+#phi1, f = example1.phi, example1.f
+#phi1 = example1.boundary_condition('Q4-a')
 #phi1 = example1.grid_potential(4, 4, 0)
-phi1 = example1.overrelaxation_method()
-example1.grid_plot()
+#phi1 = example1.overrelaxation_method()
+#example1.grid_plot()
 
 # Question 4, Part 1b
 #example2= PoissonGrid(0.1, 9)
@@ -317,6 +336,6 @@ example1.grid_plot()
 
 
 
-example1.random_walker(4,4)
-walk = example1.random_walker(4,4, 100)
-print(walk)
+#example1.random_walker(4,4)
+#walk = example1.random_walker(4,4, 100)
+#print(walk)
