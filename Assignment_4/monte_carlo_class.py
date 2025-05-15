@@ -46,6 +46,16 @@ class MonteCarlo:
         average_2 = 1/self.classification.n * np.sum(value_2)
         return average, average_2
 
+    def array_average(self):
+        """
+        Perforns the same calculation as the above function however does not sum the values,
+        a necessary alteration for Assignment 4's arrays.
+        """
+        value_2 = self.value**2
+        average = 1/self.classification.n * self.value
+        average_2 = 1/self.classification.n * value_2
+        return average, average_2
+
     def parallel_version(self):
         """
         Combines integral calculation of the function, variance of function, and other function
@@ -67,13 +77,42 @@ class MonteCarlo:
             variance = 1/self.classification.n * (variance_2 - variance_1)
             uncertainty = np.sqrt(variance) * ((self.b - self.a)**self.classification.d)
 
-            print(f"Average = {mean * delta}, Integral = {integral},",
-            f"Variance = {variance}")
-            print(f"The {self.classification.d}D Integral is {integral:.4f} ± {uncertainty:.4f}",
-            f"units**{self.classification.d}")
-            print()
-            return integral
+#            print(f"Average = {mean * delta}, Integral = {integral},",
+#            f"Variance = {variance}")
+#            print(f"The {self.classification.d}D Integral is {integral:.4f} ± {uncertainty:.4f}",
+#            f"units**{self.classification.d}")
+#            print()
+            return integral, uncertainty
         return None
+
+
+    def parallel_array(self):
+        """
+        Another necessary alteration to this class, which performs a similar parallisation
+        to the above fucntion, but for the 'array_average' function. All desired outputs
+        are left as arrays to satisfy requirements.        
+        """
+        avg, avg_sq = self.array_average()
+
+        # Element-wise reduction using MPI
+        val_mean = comm.reduce(avg, op=MPI.SUM, root=0)
+        val_sq_mean = comm.reduce(avg_sq, op=MPI.SUM, root=0)
+
+        if rank == 0:
+            # Element-wise mean across ranks
+            parallel_mean = val_mean / nproc
+
+            # Integral term for all elements (scalar multiplier)
+            integral_term = (self.b - self.a) ** self.classification.d
+            integral = parallel_mean * integral_term
+
+            # Variance: Var = (1/n^2) * (âŸ¨f^2âŸ© - âŸ¨fâŸ©^2)
+            variance = (val_sq_mean / nprocs - np.square(parallel_mean)) / self.classification.n
+            # Element-wise uncertainty
+            uncertainty = np.sqrt(variance) * integral_term
+            return parallel_mean, integral, uncertainty
+        return None
+
     def importance_sampling(self):
         """
         Makes use of the idea of importance sampling to reduce error in variance calculation versus
