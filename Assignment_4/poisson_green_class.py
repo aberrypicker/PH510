@@ -146,8 +146,8 @@ class PoissonGrid:
                     max_delta = max(max_delta, abs(self.phi[i, j] - initial_phi))
 
             if max_delta < tolerance:
-                print(f"The Grid has converged in {iteration} iterations.")
-                print(np.round(self.phi, 2))
+                #print(f"The Grid has converged in {iteration} iterations.")
+                #print(np.round(self.phi, 4))
                 break
 
         else:
@@ -253,12 +253,12 @@ class PoissonGrid:
                 green_charge[p, q] = self.h**2/self.n_samples * self.site_visits[p, q]
         return green_charge
 
-    def greens_function(self, starting_point_i, starting_point_j):
+    def greens_function(self, initial_i, initial_j):
         """
         Uses above charge component and probability component of the grid to deliver 
         the Green's function.
         """
-        i, j = starting_point_i, starting_point_j
+        i, j = initial_i, initial_j
         return self.random_walk_probabilities(i, j) + self.greens_charge(i, j)
 
     def greens_potential(self, initial_i, initial_j):
@@ -267,7 +267,7 @@ class PoissonGrid:
         probabilities as a summation, and the potential.
         """
         i, j = initial_i, initial_j
-        greens_laplace = self.random_walk_probabilities(i, j)[0]
+        greens_laplace = self.random_walk_probabilities(i, j)
         term1 = np.zeros((self.n, self.n))
         for x_b in range(0, self.n):
             for y_b in range(0, self.n):
@@ -288,7 +288,7 @@ class PoissonGrid:
         plt.figure()
         extent = [0, self.l * 100, 0, self.l * 100] #cm conversion
         plt.imshow(np.round(value, dp), origin='lower', extent=extent, cmap='inferno')
-        plt.colorbar(label='Potential (V)')
+        plt.colorbar(label='Probability')
         plt.title(title)
         plt.xlabel("x (cm)")
         plt.ylabel("y (cm)")

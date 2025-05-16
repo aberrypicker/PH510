@@ -105,16 +105,16 @@ phi_1 = init_grid.phi
 phi_1 = init_grid.boundary_condition('Q4-a')
 phi_1 = init_grid.overrelaxation_method()
 
-potential_50_50_4a = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4a = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4a_calc = potential_50_50_4a.parallel_version()
 
-potential_25_25_4a = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4a = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4a_calc = potential_25_25_4a.parallel_version()
 
-potential_1_25_4a = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4a = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4a_calc = potential_1_25_4a.parallel_version()
 
-potential_1_1_4a = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4a = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4a_calc = potential_1_1_4a.parallel_version()
 
 if rank==0:
@@ -134,16 +134,16 @@ phi_2 = init_grid.phi
 phi_2 = init_grid.boundary_condition('Q4-b')
 phi_2 = init_grid.overrelaxation_method()
 
-potential_50_50_4b = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4b = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4b_calc = potential_50_50_4b.parallel_version()
 
-potential_25_25_4b = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4b = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4b_calc = potential_25_25_4b.parallel_version()
 
-potential_1_25_4b = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4b = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4b_calc = potential_1_25_4b.parallel_version()
 
-potential_1_1_4b = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4b = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4b_calc = potential_1_1_4b.parallel_version()
 
 if rank==0:
@@ -163,16 +163,16 @@ phi_3 = init_grid.phi
 phi_3 = init_grid.boundary_condition('Q4-c')
 phi_3 = init_grid.overrelaxation_method()
 
-potential_50_50_4c = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4c = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4c_calc = potential_50_50_4b.parallel_version()
 
-potential_25_25_4c = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4c = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4c_calc = potential_25_25_4b.parallel_version()
 
-potential_1_25_4c = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4c = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4c_calc = potential_1_25_4b.parallel_version()
 
-potential_1_1_4c = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4c = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4c_calc = potential_1_1_4b.parallel_version()
 
 if rank==0:
@@ -202,16 +202,16 @@ phi_4 = init_grid.overrelaxation_method()
 
 f_4 = init_grid.charge_distribution_scenario('uniform_10C')
 
-potential_50_50_4di = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4di = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4di_calc = potential_50_50_4di.parallel_version()
 
-potential_25_25_4di = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4di = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4di_calc = potential_25_25_4di.parallel_version()
 
-potential_1_25_4di = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4di = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4di_calc = potential_1_25_4di.parallel_version()
 
-potential_1_1_4di = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4di = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4di_calc = potential_1_1_4di.parallel_version()
 
 if rank==0:
@@ -232,16 +232,16 @@ phi_5 = init_grid.overrelaxation_method()
 
 f_5 = init_grid.charge_distribution_scenario('uniform_10C')
 
-potential_50_50_4dii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4dii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4dii_calc = potential_50_50_4dii.parallel_version()
 
-potential_25_25_4dii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4dii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4dii_calc = potential_25_25_4dii.parallel_version()
 
-potential_1_25_4dii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4dii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4dii_calc = potential_1_25_4dii.parallel_version()
 
-potential_1_1_4dii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4dii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4dii_calc = potential_1_1_4dii.parallel_version()
 
 if rank==0:
@@ -262,16 +262,16 @@ phi_6 = init_grid.overrelaxation_method()
 
 f_6 = init_grid.charge_distribution_scenario('uniform_10C')
 
-potential_50_50_4diii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4diii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4diii_calc = potential_50_50_4diii.parallel_version()
 
-potential_25_25_4diii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4diii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4diii_calc = potential_25_25_4diii.parallel_version()
 
-potential_1_25_4diii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4diii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4diii_calc = potential_1_25_4diii.parallel_version()
 
-potential_1_1_4diii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4diii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4diii_calc = potential_1_1_4diii.parallel_version()
 
 if rank==0:
@@ -297,16 +297,16 @@ phi_7 = init_grid.overrelaxation_method()
 
 f_7 = init_grid.charge_distribution_scenario('linear_gradient_top_to_bottom')
 
-potential_50_50_4ei = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4ei = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4ei_calc = potential_50_50_4ei.parallel_version()
 
-potential_25_25_4ei = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4ei = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4ei_calc = potential_25_25_4ei.parallel_version()
 
-potential_1_25_4ei = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4ei = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4ei_calc = potential_1_25_4ei.parallel_version()
 
-potential_1_1_4ei = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4ei = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4ei_calc = potential_1_1_4ei.parallel_version()
 
 if rank==0:
@@ -328,16 +328,16 @@ phi_8 = init_grid.overrelaxation_method()
 
 f_8 = init_grid.charge_distribution_scenario('linear_gradient_top_to_bottom')
 
-potential_50_50_4eii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4eii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4eii_calc = potential_50_50_4eii.parallel_version()
 
-potential_25_25_4eii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4eii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4eii_calc = potential_25_25_4eii.parallel_version()
 
-potential_1_25_4eii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4eii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4eii_calc = potential_1_25_4eii.parallel_version()
 
-potential_1_1_4eii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4eii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4eii_calc = potential_1_1_4eii.parallel_version()
 
 if rank==0:
@@ -359,16 +359,16 @@ phi_9 = init_grid.overrelaxation_method()
 
 f_9 = init_grid.charge_distribution_scenario('linear_gradient_top_to_bottom')
 
-potential_50_50_4eiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4eiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4eiii_calc = potential_50_50_4eiii.parallel_version()
 
-potential_25_25_4eiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4eiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4eiii_calc = potential_25_25_4eiii.parallel_version()
 
-potential_1_25_4eiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4eiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4eiii_calc = potential_1_25_4eiii.parallel_version()
 
-potential_1_1_4eiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4eiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4eiii_calc = potential_1_1_4eiii.parallel_version()
 
 if rank==0:
@@ -393,16 +393,16 @@ phi_10 = init_grid.overrelaxation_method()
 
 f_10 = init_grid.charge_distribution_scenario('exp_decay')
 
-potential_50_50_4fi = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4fi = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4fi_calc = potential_50_50_4fi.parallel_version()
 
-potential_25_25_4fi = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4fi = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4fi_calc = potential_25_25_4fi.parallel_version()
 
-potential_1_25_4fi = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4fi = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4fi_calc = potential_1_25_4fi.parallel_version()
 
-potential_1_1_4fi = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4fi = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4fi_calc = potential_1_1_4fi.parallel_version()
 
 if rank==0:
@@ -423,16 +423,16 @@ phi_11 = init_grid.overrelaxation_method()
 
 f_11 = init_grid.charge_distribution_scenario('exp_decay')
 
-potential_50_50_4fii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4fii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4fii_calc = potential_50_50_4fii.parallel_version()
 
-potential_25_25_4fii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4fii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4fii_calc = potential_25_25_4fii.parallel_version()
 
-potential_1_25_4fii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4fii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4fii_calc = potential_1_25_4fii.parallel_version()
 
-potential_1_1_4fii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4fii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4fii_calc = potential_1_1_4fii.parallel_version()
 
 if rank==0:
@@ -453,16 +453,16 @@ phi_12 = init_grid.overrelaxation_method()
 
 f_12 = init_grid.charge_distribution_scenario('exp_decay')
 
-potential_50_50_4fiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 10, 10)
+potential_50_50_4fiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 10, 10)
 potential_50_50_4fiii_calc = potential_50_50_4fiii.parallel_version()
 
-potential_25_25_4fiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 5, 5)
+potential_25_25_4fiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 5, 5)
 potential_25_25_4fiii_calc = potential_25_25_4fiii.parallel_version()
 
-potential_1_25_4fiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 5)
+potential_1_25_4fiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 5)
 potential_1_25_4fiii_calc = potential_1_25_4fiii.parallel_version()
 
-potential_1_1_4fiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 10, 1, 1)
+potential_1_1_4fiii = mc.MonteCarlo(init_grid, init_grid.greens_potential, 0, 4.5, 1, 1)
 potential_1_1_4fiii_calc = potential_1_1_4fiii.parallel_version()
 
 if rank==0:

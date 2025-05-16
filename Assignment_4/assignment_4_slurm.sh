@@ -10,7 +10,7 @@
 # No of cores required (max. of 16, 4GB RAM per core)
 #SBATCH --ntasks=16
 # Runtime (hard, HH:MM:SS)
-#SBATCH --time=00:30:00
+#SBATCH --time=00:45:00
 # Job name
 #SBATCH --job-name=assignment_4_code.py
 # Output file
