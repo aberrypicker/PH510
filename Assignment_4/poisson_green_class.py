@@ -185,7 +185,7 @@ class PoissonGrid:
         return np.mean(values)
 
 
-    def random_walk_probabilities(self, initial_i, initial_j, n_walks=100000):
+    def random_walk_probabilities(self, initial_i, initial_j):
         """
         Simulates random walks starting at the given set of coordinates (given by initial_i &
         initial_j), and returns the empirical probabilities of reaching each boundary point.
@@ -201,7 +201,7 @@ class PoissonGrid:
             boundary_hits[(i, 0)] = 0       # Left
             boundary_hits[(i, self.n - 1)] = 0  # Right
 
-        for _ in range(n_walks):
+        for _ in range(self.n_samples):
             i, j = initial_i, initial_j
             while not self.boundary_check(i, j):
                 self.site_visits[(i, j)] += 1
@@ -261,7 +261,7 @@ class PoissonGrid:
         i, j = starting_point_i, starting_point_j
         return self.random_walk_probabilities(i, j) + self.greens_charge(i, j)
 
-    def greens_potential(self, initial_i, initial_j, n_walks=100000):
+    def greens_potential(self, initial_i, initial_j):
         """
         Function to determine the other part of Green's function, using the boundary
         probabilities as a summation, and the potential.
@@ -275,11 +275,11 @@ class PoissonGrid:
                     term1[x_b, y_b] = greens_laplace[x_b, y_b] * self.phi[x_b, y_b]
 
         term1_sum = np.sum(term1)
-        term2 = np.sum(self.greens_function(i, j) * self.f)
+        term2 = np.sum(self.greens_charge(i, j) * self.f)
         phi_greens = term1_sum + term2
         return phi_greens
 
-    def grid_plot(self, value, title):
+    def grid_plot(self, value, title, dp):
         """
         Function to allow the various grids to be visualised in a colour mapped figure, and takes
         a title from the input to allow dynamic changing based on the circumstance. Also contains
@@ -287,7 +287,7 @@ class PoissonGrid:
         """
         plt.figure()
         extent = [0, self.l * 100, 0, self.l * 100] #cm conversion
-        plt.imshow(np.round(value, 4), origin='lower', extent=extent, cmap='inferno')
+        plt.imshow(np.round(value, dp), origin='lower', extent=extent, cmap='inferno')
         plt.colorbar(label='Potential (V)')
         plt.title(title)
         plt.xlabel("x (cm)")

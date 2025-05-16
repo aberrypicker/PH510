@@ -22,13 +22,14 @@ class MonteCarlo:
     average across the limits of the function 'a' and 'b'. Finally, the function's variance (error)
     is found.
     """
-    def __init__(self, function, classification, a, b):
+    def __init__(self, classification, function, a, b, *args, **kwargs):
         self.a = a
         self.b = b
         self.classification = classification
         self.function = function
-        self.value = function()
-
+        self.args = args
+        self.kwargs = kwargs
+        self.value = function(*args, **kwargs)
 
     def __str__(self):
         """
@@ -106,8 +107,8 @@ class MonteCarlo:
             integral_term = (self.b - self.a) ** self.classification.d
             integral = parallel_mean * integral_term
 
-            # Variance: Var = (1/n^2) * (âŸ¨f^2âŸ© - âŸ¨fâŸ©^2)
-            variance = (val_sq_mean / nprocs - np.square(parallel_mean)) / self.classification.n
+            # Variance
+            variance = (val_sq_mean / nproc - np.square(parallel_mean)) / self.classification.n
             # Element-wise uncertainty
             uncertainty = np.sqrt(variance) * integral_term
             return parallel_mean, integral, uncertainty
